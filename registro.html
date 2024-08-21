@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Registro</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap" rel="stylesheet">
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="/css/styles1.css">
+</head>
+<body>
+
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark p-1">
+        <div class="container">
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+            aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+          <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav w-100 justify-content-between">
+              <li class="nav-item">
+                <a class="nav-link active" href="index.html">Inicio</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="categories.html">Categorías</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="sell.html">Vender</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="login.html">Login</a>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </nav>
+
+    <div class="container login-container">
+        <h1 class="mb-4 title title-login">REGÍSTRATE</h1>
+        <div class="login-wrapper">
+            <div class="login-image"></div>
+            <div class="login-form">
+                <form id="registro-form">
+                    <div class="form-group">
+                        <label for="nuevo-usuario" class="mb-0">Usuario:</label>
+                        <input type="text" class="form" id="nuevo-usuario" placeholder="" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="nueva-contraseña" class="mb-0">Contraseña:</label>
+                        <input type="password" class="form" id="nueva-contraseña" placeholder="" required>
+                    </div>
+                    <div class="btn">
+                        <button type="submit" class="btn1">REGISTRAR</button>
+                    </div>
+                    <div class="links-formulario">
+                        <a  class="links-form"><strong>Olvide mi contraseña</strong></a>
+                        <br>
+                        <a href="login.html" class="links-form">Ya tienes cuenta? <strong>Inicia sesión</strong></a>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+    
+    <script src="js/registro.js"></script>
+</body>
+</html>
