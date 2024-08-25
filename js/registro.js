@@ -1,7 +1,7 @@
 document.getElementById('registro-form').addEventListener('submit', function (e) {
     e.preventDefault();
-    const usuario = document.getElementById('nuevo-usuario').value;('nueva-contraseña').value;
-    const contraseña = document.getElementById;
+    const usuario = document.getElementById('nuevo-usuario').value;
+    const contraseña = document.getElementById('nueva-contraseña').value;
 
     if (usuario.trim() !== '' && contraseña.trim() !== '') {
         // aca se quechea que los campos de usuario y contraseña no esten vacios y guarda los datos ingresados en local storage
