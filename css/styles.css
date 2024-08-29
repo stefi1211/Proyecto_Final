@@ -188,3 +188,14 @@ a.custom-card:hover {
 .checked {
   color: orange;
 }
+
+.navbar-nav {
+  flex-direction: row;
+}
+
+.nav-item {
+  margin-left: 10px;
+}
+
+#user-name {
+  color: #fff;}
