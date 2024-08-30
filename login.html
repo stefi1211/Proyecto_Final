@@ -1,77 +1,108 @@
 <!DOCTYPE html>
 <html lang="es">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Login</title>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap" rel="stylesheet">
-    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="/css/styles1.css">
-</head>
-<body>
-
-  <nav class="navbar navbar-expand-lg navbar-dark bg-dark p-1">
-    <div class="container">
-      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
-        aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-      </button>
-      <div class="collapse navbar-collapse" id="navbarNav">
-        <ul class="navbar-nav w-100 justify-content-between">
-          <li class="nav-item">
-            <a class="nav-link active" href="index.html">Inicio</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="categories.html">Categorías</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="sell.html">Vender</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="login.html">Login</a>
-          </li>
-        </ul>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="/css/styles1.css" />
+  </head>
+  <body>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark p-1">
+      <div class="container">
+        <button
+          class="navbar-toggler"
+          type="button"
+          data-bs-toggle="collapse"
+          data-bs-target="#navbarNav"
+          aria-controls="navbarNav"
+          aria-expanded="false"
+          aria-label="Toggle navigation"
+        >
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+          <ul class="navbar-nav w-100 justify-content-between">
+            <li class="nav-item">
+              <a class="nav-link active" href="index.html">Inicio</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="categories.html">Categorías</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="sell.html">Vender</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" id="user-link" href="login.html">Login</a>
+            </li>
+          </ul>
+        </div>
       </div>
-    </div>
-  </nav>
+    </nav>
 
     <div class="container login-container">
-        <h1 class="mb-4 title title-login">BIENVENID@</h1>
-        <div class="login-wrapper">
-            <div class="login-image"></div>
-            <div class="login-form">
-                <form id="login-form">
-                    <div class="form-group">
-                        <label for="usuario" class="mb-0">Usuario:</label>
-                        <input type="text" class="form" id="usuario" placeholder="" required>
-                    </div>
-                    <div class="form-group">
-                        <label for="contraseña" class="mb-0">Contraseña:</label>
-                        <input type="password" class="form" id="contraseña" placeholder="" required>
-                    </div>
-                    <div class="btn">
-                        <button type="submit" class="btn1">INGRESAR</button>
-                    </div>
-                    <div class="links-formulario">
-                        <a  class="links-form"><strong>Olvide mi contraseña</strong></a>
-                        <br>
-                        <a href="registro.html" class="links-form">¿No tienes cuenta? <strong>Regístrate</strong></a>
-                    </div>
-                </form>
+      <h1 class="mb-4 title title-login">BIENVENID@</h1>
+      <div class="login-wrapper">
+        <div class="login-image"></div>
+        <div class="login-form">
+          <form id="login-form">
+            <div class="form-group">
+              <label for="usuario" class="mb-0">Usuario:</label>
+              <input
+                type="text"
+                class="form"
+                id="usuario"
+                placeholder=""
+                required
+              />
             </div>
+            <div class="form-group">
+              <label for="contraseña" class="mb-0">Contraseña:</label>
+              <input
+                type="password"
+                class="form"
+                id="contraseña"
+                placeholder=""
+                required
+              />
+            </div>
+            <div class="btn">
+              <button type="submit" class="btn1">INGRESAR</button>
+            </div>
+            <div class="links-formulario">
+              <a class="links-form"><strong>Olvide mi contraseña</strong></a>
+              <br />
+              <a href="registro.html" class="links-form"
+                >¿No tienes cuenta? <strong>Regístrate</strong></a
+              >
+            </div>
+          </form>
         </div>
+      </div>
     </div>
-  <footer class="text-muted">
-    <div class="container">
-      <p class="float-end">
-        <a href="#">Volver arriba</a>
-      </p>
-      <p>Este sitio forma parte de <a href="https://jovenesaprogramar.edu.uy/" target="_blank">Jovenes a Programar</a></p>
-    </div>
-  </footer>
-  <script src="js/login.js"></script>
-</body>
-
+    <footer class="text-muted">
+      <div class="container">
+        <p class="float-end">
+          <a href="#">Volver arriba</a>
+        </p>
+        <p>
+          Este sitio forma parte de
+          <a href="https://jovenesaprogramar.edu.uy/" target="_blank"
+            >Jovenes a Programar</a
+          >
+        </p>
+      </div>
+    </footer>
+    <script src="js/login.js"></script>
+    <script src="/js/updatenavbar.js"></script>
+  </body>
 </html>
