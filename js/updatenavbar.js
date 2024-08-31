@@ -12,7 +12,7 @@ document.addEventListener('DOMContentLoaded', () => {
   if (userName) {
     
     userLink.innerHTML = `<strong> Hola! </strong> ${userName}`;
-    userLink.href = 'profile.html'; 
+    userLink.href = 'my-profile.html'; 
   } else {
     
     userLink.textContent = 'Login';
