@@ -13,7 +13,4 @@ document.getElementById('registro-form').addEventListener('submit', function (e)
         alert('Por favor, complete todos los campos.');
     }
 });
-document.addEventListener('DOMContentLoaded', () => {
-    const userName = localStorage.getItem('userName') || 'Invitado'; // Reemplaza 'Invitado' si no hay un nombre guardado
-    document.getElementById('user-name').textContent = userName;
-  });
+
