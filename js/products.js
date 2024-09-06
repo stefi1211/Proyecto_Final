@@ -13,7 +13,11 @@ document.addEventListener('DOMContentLoaded', function () {
   fetch(url)
     .then((response) => response.json())
     .then((data) => {
-      productos = data.products;
+      const productos = data.products;
+      const nombreCategoria = data.catName;
+      document.querySelector(
+        '.title'
+      ).textContent = `Listado de ${nombreCategoria}`;
       mostrarProductos(productos);
     })
     .catch((error) => {
@@ -96,3 +100,20 @@ function mostrarProductos(productos) {
     lista.appendChild(tarjeta);
   });
 }
+
+fetch(url)
+  .then((response) => response.json())
+  .then((data) => {
+    const productos = data.products; // Asignamos los productos obtenidos
+
+    // Cambiar el título de la página con el nombre de la categoría
+    const nombreCategoria = data.catName; // Obtenemos el nombre de la categoría desde el JSON
+    document.querySelector(
+      '.title'
+    ).textContent = `Listado de ${nombreCategoria}`;
+
+    mostrarProductos(productos); // Mostramos los productos inicialmente
+  })
+  .catch((error) => {
+    console.error('Error al cargar los productos:', error);
+  });
