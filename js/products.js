@@ -1,14 +1,33 @@
 document.addEventListener('DOMContentLoaded', function () {
-    // enlace a json con productos
-    const url = 'https://japceibal.github.io/emercado-api/cats_products/101.json';
+const categoryId = localStorage.getItem('catID');
+
+    if (!categoryId) {
+        console.error('No se ha encontrado un ID de categoría en el almacenamiento local.');
+        return;
+    }
+
+    // Crear la URL dinámica usando el identificador de categoría
+    const url = `https://japceibal.github.io/emercado-api/cats_products/${categoryId}.json`;
+    console.log('URL utilizada:, ${url}');  // Verifica la URL
 
     fetch(url)
-        .then(response => response.json())
+        .then(response => {
+            if (!response.ok) {
+                throw new Error('Network response was not ok ' + response.statusText);
+            }
+            return response.json();
+        })
         .then(data => {
+            console.log('Data received:', data);  // Verifica los datos recibidos
             const productos = data.products;
             const lista = document.getElementById('productos-lista');
 
-            // cra una tarjeta por cada producto de la lista y la agrega al html
+            if (!productos || productos.length === 0) {
+                console.warn('No products found.');
+                return;
+            }
+
+            // Crear una tarjeta por cada producto de la lista y agregarla al HTML
             productos.forEach(producto => {
                 const tarjeta = document.createElement('div');
                 tarjeta.className = 'col-md-4 mb-4';
@@ -31,3 +50,4 @@ document.addEventListener('DOMContentLoaded', function () {
             console.error('Error al cargar los productos:', error);
         });
 });
+
