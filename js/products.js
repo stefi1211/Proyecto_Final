@@ -1,18 +1,18 @@
+
 document.addEventListener('DOMContentLoaded', function () {
-    // enlace a json con productos
-    const url = 'https://japceibal.github.io/emercado-api/cats_products/101.json';
+    const catID = localStorage.getItem('catID');
+    const url = `https://japceibal.github.io/emercado-api/cats_products/${catID}.json`;  // enlace a json con productos
+    const lista = document.getElementById('productos-lista');
+    const searchInput = document.getElementById('search-input');
+    let productos = []
+    let catName = '';
 
-    fetch(url)
-        .then(response => response.json())
-        .then(data => {
-            const productos = data.products;
-            const lista = document.getElementById('productos-lista');
-
-            // cra una tarjeta por cada producto de la lista y la agrega al html
-            productos.forEach(producto => {
-                const tarjeta = document.createElement('div');
-                tarjeta.className = 'col-md-4 mb-4';
-                tarjeta.innerHTML = `
+    function renderProducts(filteredProducts) {
+        lista.innerHTML = '';
+        filteredProducts.forEach(producto => {
+            const tarjeta = document.createElement('div');
+            tarjeta.className = 'col-md-4 mb-4';
+            tarjeta.innerHTML = `
 <div class="card">
 <img src="${producto.image}" class="card-img-top" alt="${producto.name}">
 <div class="card-body">
@@ -23,9 +23,31 @@ document.addEventListener('DOMContentLoaded', function () {
 </div>
 </div>
 `;
+            lista.appendChild(tarjeta);
+        });
+    }
 
-                lista.appendChild(tarjeta);
-            });
+    function filterProducts(query) {
+        const lowerCaseQuery = query.toLowerCase();
+        const filteredProducts = productos.filter(producto => 
+            producto.name.toLowerCase().includes(lowerCaseQuery) || 
+            producto.description.toLowerCase().includes(lowerCaseQuery)
+        );
+        renderProducts(filteredProducts);
+    }
+
+    searchInput.addEventListener('input', function () {
+        filterProducts(searchInput.value);
+    });
+
+    
+    fetch(url)
+        .then(response => response.json())
+        .then(data => {
+            productos = data.products;
+            catName = data.catName;
+            document.querySelector('h1.title').textContent = `Listado de ${catName}`;
+            renderProducts(productos);
         })
         .catch(error => {
             console.error('Error al cargar los productos:', error);
