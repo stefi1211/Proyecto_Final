@@ -1,10 +1,14 @@
-
 document.addEventListener('DOMContentLoaded', function () {
-    const catID = localStorage.getItem('catID');
-    const url = `https://japceibal.github.io/emercado-api/cats_products/${catID}.json`;  // enlace a json con productos
+    const categoryId = localStorage.getItem('catID');
+    if (!categoryId) {
+        console.error('No se ha encontrado un ID de categoría en el almacenamiento local.');
+        return;
+    }
+
+    const url = `https://japceibal.github.io/emercado-api/cats_products/${categoryId}.json`;
     const lista = document.getElementById('productos-lista');
     const searchInput = document.getElementById('search-input');
-    let productos = []
+    let productos = [];
     let catName = '';
 
     function renderProducts(filteredProducts) {
@@ -40,16 +44,58 @@ document.addEventListener('DOMContentLoaded', function () {
         filterProducts(searchInput.value);
     });
 
-    
     fetch(url)
-        .then(response => response.json())
+        .then(response => {
+            if (!response.ok) {
+                throw new Error('La respuesta de la red no fue satisfactoria: ' + response.statusText);
+            }
+            return response.json();
+        })
         .then(data => {
             productos = data.products;
             catName = data.catName;
-            document.querySelector('h1.title').textContent = `Listado de ${catName}`;
+            document.querySelector('.title').textContent = `Listado de ${catName}`;
             renderProducts(productos);
         })
         .catch(error => {
             console.error('Error al cargar los productos:', error);
         });
+
+    document.getElementById('rangeFilterPrice').addEventListener('click', function () {
+        const minPrice = parseFloat(document.getElementById('rangeFilterPriceMin').value) || 0;
+        const maxPrice = parseFloat(document.getElementById('rangeFilterPriceMax').value) || Infinity;
+
+        console.log(`Filtrando con precios: Min: ${minPrice}, Max: ${maxPrice}`);
+
+        const productosFiltrados = productos.filter(producto =>
+            producto.cost >= minPrice && producto.cost <= maxPrice
+        );
+
+        renderProducts(productosFiltrados);
+    });
+
+    document.getElementById('clearRangeFilter').addEventListener('click', function () {
+        document.getElementById('rangeFilterPriceMin').value = '';
+        document.getElementById('rangeFilterPriceMax').value = '';
+
+        renderProducts(productos);
+    });
+
+    document.getElementById('sortAsc').addEventListener('click', function () {
+        const productosOrdenados = [...productos].sort((a, b) => a.cost - b.cost);
+        console.log('Productos ordenados por precio ascendente:', productosOrdenados);
+        renderProducts(productosOrdenados);
+    });
+
+    document.getElementById('sortDesc').addEventListener('click', function () {
+        const productosOrdenados = [...productos].sort((a, b) => b.cost - a.cost);
+        console.log('Productos ordenados por precio descendente:', productosOrdenados);
+        renderProducts(productosOrdenados);
+    });
+
+    document.getElementById('sortByRelevancia').addEventListener('click', function () {
+        const productosOrdenados = [...productos].sort((a, b) => b.soldCount - a.soldCount);
+        console.log('Productos ordenados por relevancia:', productosOrdenados);
+        renderProducts(productosOrdenados);
+    });
 });
