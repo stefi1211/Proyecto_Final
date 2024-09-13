@@ -4,13 +4,14 @@ document.addEventListener('DOMContentLoaded', function () {
         console.error('No se ha encontrado un ID de categoría en el almacenamiento local.');
         return;
     }
-
-    const url = `https://japceibal.github.io/emercado-api/cats_products/${categoryId}.json`;
+    
+    const url = `https://japceibal.github.io/emercado-api/cats_products/${categoryId}.json`; // Crear la URL dinámica usando el identificador de categoría
     const lista = document.getElementById('productos-lista');
     const searchInput = document.getElementById('search-input');
     let productos = [];
     let catName = '';
 
+   // funcion para crear una tarjeta por cada producto de la lista y agregarla al HTML
     function renderProducts(filteredProducts) {
         lista.innerHTML = '';
         filteredProducts.forEach(producto => {
@@ -31,6 +32,7 @@ document.addEventListener('DOMContentLoaded', function () {
         });
     }
 
+    // funcion para filtrar la busqueda del usuario
     function filterProducts(query) {
         const lowerCaseQuery = query.toLowerCase();
         const filteredProducts = productos.filter(producto => 
@@ -52,15 +54,18 @@ document.addEventListener('DOMContentLoaded', function () {
             return response.json();
         })
         .then(data => {
+            console.log('Datos recibidos:', data); // Verifica los datos recibidos
             productos = data.products;
             catName = data.catName;
-            document.querySelector('.title').textContent = `Listado de ${catName}`;
-            renderProducts(productos);
+            document.querySelector('.title').textContent = `Listado de ${catName}`; // Cambia el titulo por cada nombre de la categoria en la que se esta
+            renderProducts(productos); // Muestra los productos 
         })
         .catch(error => {
             console.error('Error al cargar los productos:', error);
         });
 
+  
+    // Filtrado de precios
     document.getElementById('rangeFilterPrice').addEventListener('click', function () {
         const minPrice = parseFloat(document.getElementById('rangeFilterPriceMin').value) || 0;
         const maxPrice = parseFloat(document.getElementById('rangeFilterPriceMax').value) || Infinity;
