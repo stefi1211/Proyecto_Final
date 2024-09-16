@@ -1,0 +1,147 @@
+/* generales */
+b/* Estilos generales */
+body {
+    font-family: "Inter", sans-serif;
+    background-color: #f5f5f5;
+    margin: 0;
+    padding: 0;
+}
+
+/* Detalle del producto */
+.detail-product {
+    display: flex;
+    align-items: center;
+    padding: 30px;
+    justify-content: center;
+    font-size: 24px;
+    font-weight: bold;
+}
+
+/* Contenedor principal */
+.product-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 20px;
+}
+
+/* Imagen principal del producto */
+.cars_index img {
+    width: 300px; /* Ajusta el tamaño según sea necesario */
+    height: auto;
+    border-radius: 8px;
+}
+
+/* Título y precio del producto */
+.product-title-price {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+    max-width: 600px;
+    margin-top: 20px;
+}
+
+.product-title {
+    font-size: 28px;
+    font-weight: bold;
+    color: #222;
+}
+
+.product-price {
+    color: #315ed2;
+    font-family: 'Julius Sans One', sans-serif;
+    font-size: 24px;
+}
+
+/* Descripción del producto */
+.product-description {
+    margin-top: 20px;
+    color: #b0b0b0;
+    font-size: 16px;
+    font-family: 'Abel', sans-serif;
+    border: 1px solid rgba(0, 0, 0, 0.2);
+    padding: 10px;
+    max-width: 600px;
+    text-align: justify;
+}
+
+/* Información adicional */
+.additional-information {
+    margin-top: 10px;
+    font-size: 18px;
+    color: #000;
+    font-family: 'Julius Sans One', sans-serif;
+}
+
+/* Cantidad de productos vendidos */
+.product-sold {
+    color: #000;
+    font-size: 18px;
+}
+
+/* Imágenes asociadas */
+.imagen-asociadas {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 20px;
+    margin-top: 20px;
+}
+
+/* Estilo para cada imagen asociada */
+.colum-product {
+    display: flex;
+    gap: 20px;
+}
+
+.colum-product img {
+    width: 100px;
+    height: 100px;
+    object-fit: cover;
+    border-radius: 8px;
+}
+
+/* Pie de página */
+footer {
+    padding: 30px;
+    background-color: #343a40;
+    color: #ffffff;
+    display: flex;
+    justify-content: center;
+    margin-top: 50px;
+}
+
+footer .container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+footer .float-end {
+    margin-top: 1rem;
+    color: #ffffff;
+}
+
+/* Pantallas grandes */
+@media (min-width: 992px) {
+    .login-wrapper {
+        flex-direction: row;
+    }
+
+    .login-container {
+        height: 100vh;
+    }
+
+    .login-image {
+        border-radius: 0;
+        height: auto;
+        max-width: 50%;
+    }
+
+    .login-form {
+        border-left: 1px solid #bebebe;
+        border-top: none;
+        flex-grow: 1;
+    }
+}
