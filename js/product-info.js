@@ -16,7 +16,7 @@ document.addEventListener('DOMContentLoaded', function () {
             return response.json();
         })
         .then(data => {
-            console.log('Datos del producto recibidos:', data); 
+            console.log('Datos del producto recibidos:', data); // Verifica los datos recibidos
 
             const { name, description, soldCount, images } = data;
             const currency = data.currency; 

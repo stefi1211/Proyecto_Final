@@ -31,8 +31,19 @@ document.addEventListener('DOMContentLoaded', function () {
 `;
             lista.appendChild(tarjeta);
         });
+        setupEventListeners();
     }
 
+    function setupEventListeners() {
+        document.querySelectorAll('.card-body a').forEach(link => {
+            link.addEventListener('click', function (event) {
+                const productId = event.currentTarget.getAttribute('data-product-id');
+                if (productId) {
+                    localStorage.setItem('productId', productId);
+                }
+            });
+        });
+    }
 
     // funcion para filtrar la busqueda del usuario
     function filterProducts(query) {
