@@ -25,12 +25,14 @@ document.addEventListener('DOMContentLoaded', function () {
     <h5 class="card-title">${producto.name}</h5>
     <p class="card-text card-description">${producto.description}</p>
     <p class="card-text card-sold-count">${producto.soldCount} vendidos</p>
+    <a href="product-info.html" class="btn btn-primary" data-product-id="${producto.id}">Ver Detalles</a>
 </div>
 </div>
 `;
             lista.appendChild(tarjeta);
         });
     }
+
 
     // funcion para filtrar la busqueda del usuario
     function filterProducts(query) {
