@@ -16,35 +16,31 @@ document.addEventListener('DOMContentLoaded', function () {
             return response.json();
         })
         .then(data => {
-            console.log('Datos del producto recibidos:', data); // Verifica los datos recibidos
+            console.log('Datos del producto recibidos:', data);
 
-            const { name, description, soldCount, images } = data;
-
-            // La primera imagen será la imagen principal
-            const mainImage = images[0];
-            // Las imágenes relacionadas serán las siguientes imágenes en el array
-            const relatedImages = images.slice(1);
+            const { name, description, soldCount, images, category, cost } = data;  // Incluimos la categoría
 
             // Establecer la imagen principal
-            document.getElementById('mainProductImage').src = mainImage;
-            document.getElementById('mainProductImage').alt = name; // Configura el alt
-            document.querySelector('.product-name').textContent = name; // Configura el nombre
-            document.querySelector('.product-description').textContent = description; // Configura la descripción
-            document.getElementById('soldCount').textContent = soldCount; // Configura el número de vendidos
+            document.getElementById('mainProductImage').src = images[0];
+            document.getElementById('mainProductImage').alt = name;
+            document.querySelector('.product-name').textContent = name;
+            document.querySelector('.product-description').textContent = description;
+            document.getElementById('soldCount').textContent = soldCount;
 
-            // Genera el HTML para las imágenes relacionadas en miniatura
-            const relatedImagesHtml = relatedImages.map(img => `
+            // Mostrar la categoría
+            document.querySelector('.product-category').textContent = `Categoría: ${category}`; // Muestra la categoría
+            document.getElementById('productPrice').textContent = `${cost} USD`;
+
+            // Generar imágenes relacionadas
+            const relatedImagesHtml = images.slice(1).map(img => `
                 <img src="${img}" class="related-img img-thumbnail" alt="${name}" style="width: 100px; margin-right: 10px; cursor: pointer;">
             `).join('');
-
-            // Añadir las imágenes relacionadas al contenedor
             document.querySelector('.product-related-images').innerHTML = relatedImagesHtml;
 
-            // Añadir funcionalidad para cambiar la imagen principal cuando se haga clic en una imagen relacionada
+            // Cambiar la imagen principal al hacer clic en una relacionada
             document.querySelectorAll('.related-img').forEach(img => {
                 img.addEventListener('click', function () {
-                    const mainImageElement = document.getElementById('mainProductImage');
-                    mainImageElement.src = this.src; // Cambia la imagen principal al hacer clic en una relacionada
+                    document.getElementById('mainProductImage').src = this.src;
                 });
             });
         })

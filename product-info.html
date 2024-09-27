@@ -36,15 +36,22 @@
             </div>
         </div>
     </nav>
-    <div class="container">
+    <div class="d-flex justify-content-between align-items-center">
         <h1 class="mt-4 mb-4">Detalles del Producto</h1>
+        <span class="product-category text-muted">Categoría: <span id="productCategory"></span></span>
+    </div>
         <div id="product-info" class="row">
             <div class="col-md-8">
                 <div class="product-main-image mb-3">
                     <!-- La imagen principal del producto se cargará aquí -->
                     <img id="mainProductImage" src="" class="img-fluid" alt="">
                 </div>
-                <h2 class="product-name mt-2"></h2> <!-- Nombre del producto -->
+                
+                <div class="d-flex justify-content-between align-items-center">
+                    <h2 class="product-name">Nombre del Producto</h2>
+                     <p class="product-price"><strong>Precio:$</strong> <span id="productPrice"></span></p>
+                </div>
+               
                 <h5 class="tittle-description">Descripción <i class="fa-solid fa-chevron-down"></i></h5>
                 
                 <p class="product-description"></p> <!-- Descripción del producto -->

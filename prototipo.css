@@ -43,6 +43,7 @@ body {
 }
 /* Main Product Image */
 .product-main-image {
+    height: 50%;
     flex: 1;
     margin-bottom: 20px;
     max-width: 60%; /* Controla el ancho de la imagen principal */
@@ -133,3 +134,12 @@ footer a:hover {
     .container {
         flex: 1; /* Permitir que el contenido se expanda para evitar que el footer suba */
     }
+    /* Estilo para el precio del producto */
+.product-price {   
+}
+
+.product-category{
+
+width:257px;
+height:39px;
+}
