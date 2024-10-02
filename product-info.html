@@ -9,10 +9,31 @@
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@100;400;700&display=swap" rel="stylesheet">
     <link href="css/font-awesome.min.css" rel="stylesheet">
     <link href="css/bootstrap.min.css" rel="stylesheet">
-    <link href="css/prototipo.css" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <link href="css/styles1.css" rel="stylesheet">
-   
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        .product-info {
+            margin-top: 20px;
+        }
+        .product-info img {
+            max-width: 100%;
+            height: auto;
+        }
+        .related-images img {
+            max-width: 100px;
+            margin-right: 10px;
+        }
+
+        .star {
+            font-size: 2rem;
+            cursor: pointer;
+            color: gray;
+        }
+        .star.selected {
+            color: gold;
+        }
+    </style>
+</head>
 <body>
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark p-1">
         <div class="container">
@@ -37,36 +58,37 @@
             </div>
         </div>
     </nav>
-    <div class="d-flex justify-content-between align-items-center">
-        <h1 class="mt-4 mb-4">Detalles del Producto</h1>
-        <span class="product-category text-muted">Categoría: <span id="productCategory"></span></span>
-    </div>
-        <div id="product-info" class="row">
-            <div class="col-md-8">
-                <div class="product-main-image mb-3">
-                    <!-- La imagen principal del producto se cargará aquí -->
-                    <img id="mainProductImage" src="" class="img-fluid" alt="">
-                </div>
-                
-                <div class="d-flex justify-content-between align-items-center">
-                    <h2 class="product-name">Nombre del Producto</h2>
-                     <p class="product-price"><strong>Precio:$</strong> <span id="productPrice"></span></p>
-                </div>
-               
-                <h5 class="title-description">
-                    Descripción <i class="fa-solid fa-chevron-down"></i>
-                </h5>
-                
-                <p class="product-description"></p> <!-- Descripción del producto -->
-                <p class="product-sold"><strong>Vendidos:</strong> <span id="soldCount"></span></p>
-                <div class="product-related-images d-flex mt-3">
-                    <!-- Las imágenes relacionadas se cargarán aquí -->
-                </div>
-            </div>
+
+    <div class="container">
+      <h1 class="mt-4 mb-4">Detalles del Producto</h1>
+      <div id="product-info" class="row">
+          <!-- info -->
+      </div>
+  </div>
+
+  <div class="container mt-5">
+    <h2 class="text-center">Calificación</h2>
+    <form id="ratingForm">
+        <div class="form-group">
+            <label for="comments">Comentarios:</label>
+            <textarea class="form-control" id="comments" rows="3" required></textarea>
         </div>
-    </div>
-    
-    
+        <div class="form-group">
+            <label for="starRating">Calificación:</label>
+            <div id="starRating" class="mb-2">
+                <span class="star" data-value="1">&#9733;</span>
+                <span class="star" data-value="2">&#9733;</span>
+                <span class="star" data-value="3">&#9733;</span>
+                <span class="star" data-value="4">&#9733;</span>
+                <span class="star" data-value="5">&#9733;</span>
+            </div>
+            <input type="hidden" id="rating" required>
+        </div>
+        <button type="submit" class="btn btn-primary btn-block">Enviar</button>
+    </form>
+    <div class="alert alert-success mt-3" id="successMessage" style="display:none;"></div>
+</div>
+
     <footer class="text-muted">
         <div class="container">
             <p class="float-end">
@@ -82,6 +104,36 @@
     <script src="js/bootstrap.bundle.min.js"></script>
     <script src="js/products.js"></script>
     <script src="js/product-info.js"></script>
-    <script src="js/updatenavbar.js"></script>
-    <script src="js/init.js"></script>
-    </body>
+
+    <script>
+        const stars = document.querySelectorAll('.star');
+        let selectedRating = 0;
+
+        stars.forEach(star => {
+            star.addEventListener('click', () => {
+                selectedRating = star.getAttribute('data-value');
+                updateStars(selectedRating);
+                document.getElementById('rating').value = selectedRating; // Almacena la calificación en un campo oculto
+            });
+        });
+
+        function updateStars(rating) {
+            stars.forEach(star => {
+                star.classList.remove('selected');
+                if (star.getAttribute('data-value') <= rating) {
+                    star.classList.add('selected');
+                }
+            });
+        }
+
+        document.getElementById('ratingForm').addEventListener('submit', function(event) {
+            event.preventDefault();
+            const comments = document.getElementById('comments').value;
+            document.getElementById('successMessage').textContent = `¡Gracias por tu calificación! Comentarios: ${comments}, Calificación: ${selectedRating}`;
+            document.getElementById('successMessage').style.display = 'block';
+            this.reset();
+            updateStars(0); // Reinicia las estrellas
+        });
+    </script>
+</body>
+</html>
