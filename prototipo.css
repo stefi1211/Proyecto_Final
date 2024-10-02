@@ -59,13 +59,13 @@ body {
 .related-images {
     display: flex;
     flex-wrap: wrap; /* Asegura que las imágenes relacionadas se envuelvan si no caben en una línea */
-    gap: 50px; /* Espacio entre imágenes */
+    gap: 30px; /* Espacio entre imágenes */
     margin-bottom: 20px; /* Espacio entre las imágenes y el footer */
 }
 
 .related-images img {
-    max-width: 150px;
-    max-height: 120px;
+    max-width: 100px;
+    max-height: 100px;
     cursor: pointer;
     transition: transform 0.3s;
 }
@@ -139,11 +139,20 @@ footer a:hover {
         flex: 1; /* Permitir que el contenido se expanda para evitar que el footer suba */
     }
     /* Estilo para el precio del producto */
-.product-price {   
+.product-sold{
+    padding: 10px;
 }
 
 .product-category{
 
 width:257px;
 height:39px;
+}
+.title-description{
+    padding: 5px;
+    margin-left: 5px;
+    color: #000; /* Color opcional */
+}
+.product-description{
+    padding: 10px;
 }
