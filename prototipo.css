@@ -43,25 +43,29 @@ body {
 }
 /* Main Product Image */
 .product-main-image {
+    padding: 10px;
     height: 50%;
     flex: 1;
     margin-bottom: 20px;
     max-width: 60%; /* Controla el ancho de la imagen principal */
 }
 
+.d-flex{
+    padding: 10px;
+}
 .product-related-images {
     margin-bottom: 50px;
 }
 .related-images {
     display: flex;
     flex-wrap: wrap; /* Asegura que las imágenes relacionadas se envuelvan si no caben en una línea */
-    gap: 10px; /* Espacio entre imágenes */
+    gap: 50px; /* Espacio entre imágenes */
     margin-bottom: 20px; /* Espacio entre las imágenes y el footer */
 }
 
 .related-images img {
-    max-width: 100px;
-    max-height: 100px;
+    max-width: 150px;
+    max-height: 120px;
     cursor: pointer;
     transition: transform 0.3s;
 }
