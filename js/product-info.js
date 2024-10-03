@@ -118,9 +118,22 @@ document.addEventListener('DOMContentLoaded', function () {
     document.getElementById('ratingForm').addEventListener('submit', function (event) {
         event.preventDefault();
         const comments = document.getElementById('comments').value;
+        const selectedRating = document.getElementById('rating').value; //Punto Desafiate: tomar la calificación
         document.getElementById('successMessage').textContent = `¡Gracias por tu calificación! Comentarios: ${comments}, Calificación: ${selectedRating}`;
         document.getElementById('successMessage').style.display = 'block';
+        //Pauta desafiate para agregar la calificación simulada a los comentarios
+        const newCommentHtml = `
+        <div class="border p-2 mb-2">
+            <strong>Usuario Anónimo</strong> - ${new Date().toLocaleDateString()} 
+            <div>${'★'.repeat(selectedRating)}${'☆'.repeat(5 - selectedRating)}</div>
+            <p>${comments}</p>
+              </div>
+              `;
+              document.getElementById('ratings-list').innerHTML += newCommentHtml; //con esto se inserta el comentario en la lista 
+              
         this.reset();
         updateStars(0); // reinicia las estrellas
+        //simulación de envío de calificación
+        
     });
 });
