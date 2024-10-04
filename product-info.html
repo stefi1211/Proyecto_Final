@@ -1,87 +1,121 @@
 <!DOCTYPE html>
 <html lang="es">
-
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>eMercado - Información del Producto</title>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@100;400;700&display=swap" rel="stylesheet">
-    <link href="css/font-awesome.min.css" rel="stylesheet">
-    <link href="css/bootstrap.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="/css/styles-product-info.css">
-    
-</head>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@100;400;700&display=swap"
+      rel="stylesheet"
+    />
+    <link href="css/font-awesome.min.css" rel="stylesheet" />
+    <link href="css/bootstrap.min.css" rel="stylesheet" />
+    <link rel="stylesheet" href="/css/styles-product-info.css" />
+  </head>
 
-<body>
+  <body>
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark p-1">
-        <div class="container">
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-            <div class="collapse navbar-collapse" id="navbarNav">
-                <ul class="navbar-nav w-100 justify-content-between">
-                    <li class="nav-item"><a class="nav-link" href="index.html">Inicio</a></li>
-                    <li class="nav-item"><a class="nav-link" href="categories.html">Categorías</a></li>
-                    <li class="nav-item"><a class="nav-link" href="sell.html">Vender</a></li>
-                    <li class="nav-item"><a class="nav-link" id="user-link" href="login.html">Login</a></li>
-                </ul>
-            </div>
+      <div class="container">
+        <button
+          class="navbar-toggler"
+          type="button"
+          data-bs-toggle="collapse"
+          data-bs-target="#navbarNav"
+          aria-controls="navbarNav"
+          aria-expanded="false"
+          aria-label="Toggle navigation"
+        >
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+          <ul class="navbar-nav w-100 justify-content-between">
+            <li class="nav-item">
+              <a class="nav-link" href="index.html">Inicio</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="categories.html">Categorías</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="sell.html">Vender</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" id="user-link" href="login.html">Login</a>
+            </li>
+          </ul>
         </div>
+      </div>
     </nav>
 
     <div class="container mt-4">
-        <a href="javascript:history.back()" class="back-to-home">
-            <span style="font-size: 1.5rem; margin-right: 10px;">&#8592;</span> Volver atrás
-        </a>
-        <div id="product-info" class="product-container">
-            <!-- info productos -->
+      <a href="javascript:history.back()" class="back-to-home">
+        <span style="font-size: 1.5rem; margin-right: 10px">&#8592;</span>
+        Volver atrás
+      </a>
+      <div id="product-info" class="product-container">
+        <!-- info productos -->
+      </div>
+    </div>
+
+    <div class="container mt-5">
+      <h2 class="text-center">Calificaciones de Usuarios</h2>
+      <div id="ratings-list" class="mb-4"></div>
+
+      <h2 class="text-center">Deja tu Calificación</h2>
+      <form id="ratingForm" class="mb-4">
+        <div class="form-group">
+          <label for="comments">Comentarios:</label>
+          <textarea
+            class="form-control"
+            id="comments"
+            rows="3"
+            required
+          ></textarea>
         </div>
+        <div class="form-group">
+          <label for="starRating">Calificación:</label>
+          <div id="starRating" class="mb-2 d-flex">
+            <span class="star" data-value="1">&#9733;</span>
+            <span class="star" data-value="2">&#9733;</span>
+            <span class="star" data-value="3">&#9733;</span>
+            <span class="star" data-value="4">&#9733;</span>
+            <span class="star" data-value="5">&#9733;</span>
+          </div>
+          <input type="hidden" id="rating" required />
+        </div>
+        <button type="submit" class="btn btn-primary btn-block">Enviar</button>
+      </form>
+      <div
+        class="alert alert-success mt-3"
+        id="successMessage"
+        style="display: none"
+      ></div>
     </div>
 
     <div class="container mt-5">
-        <h2 class="text-center">Calificaciones de Usuarios</h2>
-        <div id="ratings-list" class="mb-4"></div>
-
-        <h2 class="text-center">Deja tu Calificación</h2>
-        <form id="ratingForm" class="mb-4">
-            <div class="form-group">
-                <label for="comments">Comentarios:</label>
-                <textarea class="form-control" id="comments" rows="3" required></textarea>
-            </div>
-            <div class="form-group">
-                <label for="starRating">Calificación:</label>
-                <div id="starRating" class="mb-2 d-flex">
-                    <span class="star" data-value="1">&#9733;</span>
-                    <span class="star" data-value="2">&#9733;</span>
-                    <span class="star" data-value="3">&#9733;</span>
-                    <span class="star" data-value="4">&#9733;</span>
-                    <span class="star" data-value="5">&#9733;</span>
-                </div>
-                <input type="hidden" id="rating" required>
-            </div>
-            <button type="submit" class="btn btn-primary btn-block">Enviar</button>
-        </form>
-        <div class="alert alert-success mt-3" id="successMessage" style="display:none;"></div>
-    </div>
-
-    <div class="container mt-5">
-        <h2 class="text-center">Productos Relacionados</h2>
-        <div id="related-products" class="d-flex flex-wrap justify-content-center"></div>
+      <h2 class="text-center">Productos Relacionados</h2>
+      <div
+        id="related-products"
+        class="d-flex flex-wrap justify-content-center"
+      ></div>
     </div>
 
     <footer class="text-muted">
-        <div class="container">
-            <p class="float-end"><a href="#">Volver arriba</a></p>
-            <p>Este sitio forma parte de <a href="https://jovenesaprogramar.edu.uy/" target="_blank">Jovenes a Programar</a></p>
-        </div>
+      <div class="container">
+        <p class="float-end"><a href="#">Volver arriba</a></p>
+        <p>
+          Este sitio forma parte de
+          <a href="https://jovenesaprogramar.edu.uy/" target="_blank"
+            >Jovenes a Programar</a
+          >
+        </p>
+      </div>
     </footer>
 
     <script src="js/bootstrap.bundle.min.js"></script>
     <script src="js/products.js"></script>
     <script src="js/product-info.js"></script>
     <script src="js/updatenavbar.js"></script>
-</body>
-
+  </body>
 </html>
