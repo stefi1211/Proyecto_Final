@@ -75,13 +75,23 @@ document.addEventListener('DOMContentLoaded', function () {
       // productos relacionados
       relatedProducts.forEach((product) => {
         relatedProductsDiv.innerHTML += `
-                    <div class="card" style="width: 18rem;">
+                    <div class="card" style="width: 18rem;" data-product-id="${product.id}">
                         <img class="card-img-top" src="${product.image}" alt="${product.name}">
                         <div class="card-body">
                          <h5 class="card-title">${product.name}</h5>
                         </div>
                     </div>
                 `;
+      });
+
+      relatedProductsDiv.querySelectorAll('.card').forEach((card) => {
+        card.addEventListener('click', function () {
+          const productId = card.getAttribute('data-product-id');
+          if (productId) {
+            localStorage.setItem('productId', productId);
+            window.location.href = 'product-info.html';
+          }
+        });
       });
 
       // comentarios
