@@ -2,34 +2,20 @@
 <html lang="es">
 
 <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <title>eMercado - Todo lo que busques está aquí</title>
-  <link href="https://fonts.googleapis.com/css?family=Raleway:300,300i,400,400i,700,700i,900,900i" rel="stylesheet">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Perfil de Usuario</title>
+  <!-- hojas de estilo: Bootstrap y styles.css -->
   <link href="css/bootstrap.min.css" rel="stylesheet">
   <link href="css/styles.css" rel="stylesheet">
-  <style>
-    .bd-placeholder-img {
-      font-size: 1.125rem;
-      text-anchor: middle;
-      -webkit-user-select: none;
-      -moz-user-select: none;
-      -ms-user-select: none;
-      user-select: none;
-    }
-
-    @media (min-width: 768px) {
-      .bd-placeholder-img-lg {
-        font-size: 3.5rem;
-      }
-    }
-  </style>
 </head>
 
 <body>
 
+  <!-- Navbar -->
   <nav class="navbar navbar-expand-lg navbar-dark bg-dark p-1">
     <div class="container">
+      <!-- Botón para colapsar el menú en móviles -->
       <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
         aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
@@ -45,6 +31,7 @@
           <li class="nav-item">
             <a class="nav-link" href="sell.html">Vender</a>
           </li>
+          <!-- El ID 'user-link' se usa para gestionar dinámicamente el estado del usuario logueado o no logueado -->
           <li class="nav-item">
             <a class="nav-link" id="user-link" href="login.html">Login</a>
           </li>
@@ -53,14 +40,72 @@
     </div>
   </nav>
 
-  <main>
-    <div class="container">
-      <div class="alert alert-danger text-center" role="alert">
-        <h4 class="alert-heading">Funcionalidad en desarrollo</h4>
+  <!-- Contenido principal -->
+  <main class="container mt-4">
+    <h2>Perfil de Usuario</h2>
+
+    <!-- Formulario de perfil -->
+    <form id="profileForm">
+      <!-- Campo de nombre obligatorio -->
+      <div class="mb-3">
+        <label for="firstName" class="form-label">Nombre *</label>
+        <!-- Campo de texto requerido para el nombre -->
+        <input type="text" class="form-control" id="firstName" required>
       </div>
-    </div>
+
+      <!-- Campo de segundo nombre opcional -->
+      <div class="mb-3">
+        <label for="secondName" class="form-label">Segundo Nombre</label>
+        <input type="text" class="form-control" id="secondName">
+      </div>
+
+      <!-- Campo de apellido obligatorio -->
+      <div class="mb-3">
+        <label for="lastName" class="form-label">Apellido *</label>
+        <!-- Campo de texto requerido para el apellido -->
+        <input type="text" class="form-control" id="lastName" required>
+      </div>
+
+      <!-- Campo de segundo apellido opcional -->
+      <div class="mb-3">
+        <label for="secondLastName" class="form-label">Segundo Apellido</label>
+        <input type="text" class="form-control" id="secondLastName">
+      </div>
+
+      <!-- Campo de email obligatorio, precargado con el del login -->
+      <div class="mb-3">
+        <label for="email" class="form-label">E-mail *</label>
+        <!-- El campo de email es solo lectura (readonly) y no puede ser modificado -->
+        <input type="email" class="form-control" id="email" required readonly>
+      </div>
+
+      <!-- Campo de teléfono opcional -->
+      <div class="mb-3">
+        <label for="phone" class="form-label">Teléfono de contacto</label>
+        <input type="tel" class="form-control" id="phone">
+      </div>
+
+      <!-- Campo para subir una imagen de perfil Pauta desafiate...  -->
+      <div class="mb-3">
+        <label for="profilePic" class="form-label">Foto de perfil</label>
+        <!-- Solo permite archivos de imagen (accept="image/*") -->
+        <input type="file" class="form-control" id="profilePic" accept="image/*">
+      </div>
+
+      <!-- Modo Día y Modo Noche -->
+      <div class="form-check form-switch mb-3">
+        <!-- Checkbox tipo switch para el modo noche -->
+        <input class="form-check-input" type="checkbox" id="darkModeSwitch">
+        <label class="form-check-label" for="darkModeSwitch">Modo Noche</label>
+      </div>
+
+      <!-- Botón para guardar los cambios -->
+      <button type="submit" class="btn btn-primary">Guardar cambios</button>
+    </form>
   </main>
-  <footer class="text-muted">
+
+  <!-- pie -->
+  <footer class="text-muted mt-4">
     <div class="container">
       <p class="float-end">
         <a href="#">Volver arriba</a>
@@ -68,9 +113,9 @@
       <p>Este sitio forma parte de <a href="https://jovenesaprogramar.edu.uy/" target="_blank">Jovenes a Programar</a></p>
     </div>
   </footer>
+
+  <!-- scripts necesarios -->
   <script src="js/bootstrap.bundle.min.js"></script>
-  <script src="js/init.js"></script>
-  <script src="/js/updatenavbar.js"></script>
   <script src="js/my-profile.js"></script>
 </body>
 
