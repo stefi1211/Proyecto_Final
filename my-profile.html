@@ -5,7 +5,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Perfil de Usuario</title>
-  <!-- hojas de estilo: Bootstrap y styles.css -->
+  <!-- Hojas de estilo: Bootstrap y styles.css -->
   <link href="css/bootstrap.min.css" rel="stylesheet">
   <link href="css/styles.css" rel="stylesheet">
 </head>
@@ -31,7 +31,6 @@
           <li class="nav-item">
             <a class="nav-link" href="sell.html">Vender</a>
           </li>
-          <!-- El ID 'user-link' se usa para gestionar dinámicamente el estado del usuario logueado o no logueado -->
           <li class="nav-item">
             <a class="nav-link" id="user-link" href="login.html">Login</a>
           </li>
@@ -49,7 +48,6 @@
       <!-- Campo de nombre obligatorio -->
       <div class="mb-3">
         <label for="firstName" class="form-label">Nombre *</label>
-        <!-- Campo de texto requerido para el nombre -->
         <input type="text" class="form-control" id="firstName" required>
       </div>
 
@@ -62,7 +60,6 @@
       <!-- Campo de apellido obligatorio -->
       <div class="mb-3">
         <label for="lastName" class="form-label">Apellido *</label>
-        <!-- Campo de texto requerido para el apellido -->
         <input type="text" class="form-control" id="lastName" required>
       </div>
 
@@ -75,7 +72,6 @@
       <!-- Campo de email obligatorio, precargado con el del login -->
       <div class="mb-3">
         <label for="email" class="form-label">E-mail *</label>
-        <!-- El campo de email es solo lectura (readonly) y no puede ser modificado -->
         <input type="email" class="form-control" id="email" required readonly>
       </div>
 
@@ -85,18 +81,10 @@
         <input type="tel" class="form-control" id="phone">
       </div>
 
-      <!-- Campo para subir una imagen de perfil Pauta desafiate...  -->
+      <!-- Campo para subir una imagen de perfil Pauta Desafiate... Cambiar-->
       <div class="mb-3">
         <label for="profilePic" class="form-label">Foto de perfil</label>
-        <!-- Solo permite archivos de imagen (accept="image/*") -->
         <input type="file" class="form-control" id="profilePic" accept="image/*">
-      </div>
-
-      <!-- Modo Día y Modo Noche -->
-      <div class="form-check form-switch mb-3">
-        <!-- Checkbox tipo switch para el modo noche -->
-        <input class="form-check-input" type="checkbox" id="darkModeSwitch">
-        <label class="form-check-label" for="darkModeSwitch">Modo Noche</label>
       </div>
 
       <!-- Botón para guardar los cambios -->
@@ -104,7 +92,7 @@
     </form>
   </main>
 
-  <!-- pie -->
+  <!-- Pie -->
   <footer class="text-muted mt-4">
     <div class="container">
       <p class="float-end">
@@ -114,7 +102,7 @@
     </div>
   </footer>
 
-  <!-- scripts necesarios -->
+  <!-- Scripts necesarios -->
   <script src="js/bootstrap.bundle.min.js"></script>
   <script src="js/my-profile.js"></script>
 </body>
