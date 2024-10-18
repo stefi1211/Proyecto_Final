@@ -174,3 +174,36 @@ document.addEventListener('DOMContentLoaded', function () {
       //simulación de envío de calificación
     });
 });
+
+// Cambiar tema y almacenar la preferencia. git
+document.addEventListener("DOMContentLoaded", () => {
+  const themeItems = document.querySelectorAll('.dropdown-item');
+
+  // Función para aplicar el tema
+  function applyTheme(theme) {
+      document.body.classList.remove('light', 'dark');
+      if (theme === 'light') {
+          document.body.classList.add('light');
+      } else if (theme === 'dark') {
+          document.body.classList.add('dark');
+      }
+  }
+
+  // Cargar tema desde local storage
+  const savedTheme = localStorage.getItem('theme') || 'auto';
+  if (savedTheme === 'auto') {
+      const isDarkMode = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
+      applyTheme(isDarkMode ? 'dark' : 'light');
+  } else {
+      applyTheme(savedTheme);
+  }
+
+  // Cambiar tema y guardar en local storage al hacer click
+  themeItems.forEach(item => {
+      item.addEventListener('click', (event) => {
+          const selectedTheme = event.target.getAttribute('data-theme');
+          localStorage.setItem('theme', selectedTheme);
+          applyTheme(selectedTheme);
+      });
+  });
+});
