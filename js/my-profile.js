@@ -72,4 +72,21 @@ document.addEventListener('DOMContentLoaded', () => {
       sessionStorage.setItem('userData', JSON.stringify(updatedUserData));
       alert('Datos guardados exitosamente.');
   });
+
+
+  // cambia el color de los campos llenos
+  function checkInputFilled(input) {
+    if (input.value.trim() !== '') {
+        input.classList.add('input-lleno');
+    } else {
+        input.classList.remove('input-lleno');
+    }
+}
+
+const inputs = profileForm.querySelectorAll('input');
+inputs.forEach(input => {
+    checkInputFilled(input);
+
+    input.addEventListener('input', () => checkInputFilled(input));
+});
 });
