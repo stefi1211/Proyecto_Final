@@ -1,21 +1,22 @@
-document.addEventListener('DOMContentLoaded', () => {
-  const loggedInUser = localStorage.getItem('loggedInUser');
 
-  // Si no hay usuario logueado, redirigir a la página de login
-  if (!loggedInUser) {
-    alert('Por favor, inicie sesión para acceder a su perfil.');
-    window.location.href = 'login.html'; // Redirigir al login
-    return;
+
+document.addEventListener('DOMContentLoaded', () => {
+  const authenticated = sessionStorage.getItem('authenticated');
+
+  if (authenticated !== 'true') {
+      alert('Por favor, inicie sesión para acceder a su perfil.');
+      window.location.href = 'login.html';
+      return;
   }
 
   const emailField = document.getElementById('email');
   const profileForm = document.getElementById('profileForm');
 
-  // Precargar email desde el localStorage (se supone que fue ingresado en el login)
-  emailField.value = localStorage.getItem('email') || '';
+  // cargar email en este caso usuario porque no se ingresa con email
+  emailField.value = sessionStorage.getItem('username') || '';
 
-  // Cargar otros datos si existen
-  const userData = JSON.parse(localStorage.getItem('userData')) || {};
+  // cargar otros datos
+  const userData = JSON.parse(sessionStorage.getItem('userData')) || {};
   document.getElementById('firstName').value = userData.firstName || '';
   document.getElementById('secondName').value = userData.secondName || '';
   document.getElementById('lastName').value = userData.lastName || '';
@@ -23,29 +24,29 @@ document.addEventListener('DOMContentLoaded', () => {
   document.getElementById('phone').value = userData.phone || '';
 
   profileForm.addEventListener('submit', function (event) {
-    event.preventDefault();
+      event.preventDefault();
 
-    // Validar campos obligatorios
-    const firstName = document.getElementById('firstName').value.trim();
-    const lastName = document.getElementById('lastName').value.trim();
-    const email = document.getElementById('email').value.trim();
+      // campos obligatorios
+      const firstName = document.getElementById('firstName').value.trim();
+      const lastName = document.getElementById('lastName').value.trim();
+      const email = document.getElementById('email').value.trim();
 
-    if (!firstName || !lastName || !email) {
-      alert('Por favor complete todos los campos obligatorios.');
-      return;
-    }
+      if (!firstName || !lastName || !email) {
+          alert('Por favor complete todos los campos obligatorios.');
+          return;
+      }
 
-    // Guardar los datos actualizados en localStorage
-    const updatedUserData = {
-      firstName,
-      secondName: document.getElementById('secondName').value.trim(),
-      lastName,
-      secondLastName: document.getElementById('secondLastName').value.trim(),
-      email,
-      phone: document.getElementById('phone').value.trim()
-    };
+      // guardamos los datos
+      const updatedUserData = {
+          firstName,
+          secondName: document.getElementById('secondName').value.trim(),
+          lastName,
+          secondLastName: document.getElementById('secondLastName').value.trim(),
+          email,
+          phone: document.getElementById('phone').value.trim(),
+      };
 
-    localStorage.setItem('userData', JSON.stringify(updatedUserData));
-    alert('Datos guardados exitosamente.');
+      sessionStorage.setItem('userData', JSON.stringify(updatedUserData));
+      alert('Datos guardados exitosamente.');
   });
 });
