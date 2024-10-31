@@ -1,38 +1,4 @@
-// Función para cargar productos del localStorage
-/*function loadCart() {
-    const cartItemsContainer = document.getElementById('cart-items');
-    const cartMessage = document.getElementById('cart-message');
-
-    // Obtener productos del localStorage
-    const cartItems = JSON.parse(localStorage.getItem('cartItems')) || [];
-
-    // Verificar si hay productos en el carrito
-    if (cartItems.length === 0) {
-        cartMessage.style.display = 'block'; // Mostrar mensaje de carrito vacío
-    } else {
-        cartMessage.style.display = 'none'; // Ocultar mensaje
-        cartItems.forEach(item => {
-            // Crear tarjeta para cada producto
-            const itemCard = document.createElement('div');
-            itemCard.className = 'col-md-4 mb-3';
-            itemCard.innerHTML = `
-                <div class="card">
-                    <img src="${item.image}" class="card-img-top" alt="${item.name}">
-                    <div class="card-body">
-                        <h5 class="card-title">${item.name}</h5>
-                        <p class="card-text">$${item.price.toFixed(2)}</p>
-                        <p class="card-text">Cantidad: ${item.quantity}</p>
-                    </div>
-                </div>
-            `;
-            cartItemsContainer.appendChild(itemCard);
-        });
-    }
-}
-
-// Cargar productos al cargar la página
-document.addEventListener('DOMContentLoaded', loadCart);
-*/
+/* 
 document.addEventListener('DOMContentLoaded', function () {
     async function loadCart() {
       const cartItemsContainer = document.getElementById('cart-items');
@@ -139,5 +105,37 @@ document.addEventListener('DOMContentLoaded', function () {
     }
   
     loadCart();
-  });
+  });  */
   
+  document.addEventListener('DOMContentLoaded', function () {
+    function loadCart() {
+        const cartItemsContainer = document.getElementById('cart-items');
+        const cartMessage = document.getElementById('cart-message');
+        const cartItems = JSON.parse(localStorage.getItem('cartItems')) || [];
+
+        if (cartItems.length === 0) {
+            cartMessage.style.display = 'block'; // Muestra el mensaje de carrito vacío
+        } else {
+            cartMessage.style.display = 'none'; // Oculta el mensaje
+            cartItems.forEach(item => {
+                // Estructura de la tarjeta basada en el prototipo
+                const itemCard = `
+                    <div class="col-md-4 mb-3">
+                        <div class="card">
+                            <img src="${item.image}" class="card-img-top" alt="${item.name}">
+                            <div class="card-body">
+                                <h5 class="card-title">${item.name}</h5>
+                                <p class="card-text">Precio: ${item.currency} ${item.price.toFixed(2)}</p>
+                                <p class="card-text">Cantidad: ${item.quantity}</p>
+                                <p class="card-text">Subtotal: ${item.currency} ${(item.price * item.quantity).toFixed(2)}</p>
+                            </div>
+                        </div>
+                    </div>
+                `;
+                cartItemsContainer.innerHTML += itemCard;
+            });
+        }
+    }
+
+    loadCart();
+});
