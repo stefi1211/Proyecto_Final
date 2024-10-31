@@ -1,141 +1,126 @@
-/* 
-document.addEventListener('DOMContentLoaded', function () {
-    async function loadCart() {
-      const cartItemsContainer = document.getElementById('cart-items');
-      const cartMessage = document.getElementById('cart-message');
-      const relatedProductsDiv = document.getElementById('related-products');
+/*
+  document.addEventListener('DOMContentLoaded', function () {
+    const cartItemsContainer = document.getElementById('cart-items');
+    const cartMessage = document.getElementById('cart-message');
   
-      const categories = ['101', '102', '103', '104']; // Añade más categorías según sea necesario.
-      const cartItems = JSON.parse(localStorage.getItem('cartItems')) || [];
+    // Obtener productos del carrito en localStorage
+    let cart = JSON.parse(localStorage.getItem('cart')) || [];
   
-      if (cartItems.length === 0) {
-        // Mostrar mensaje de carrito vacío.
-        cartMessage.style.display = 'block';
-  
-        try {
-          // Cargar productos relacionados aleatorios.
-          const products = await Promise.all(
-            categories.map(async (category) => {
-              const response = await fetch(
-                `https://japceibal.github.io/emercado-api/cats_products/${category}.json`
-              );
-              const data = await response.json();
-              const randomProduct =
-                data.products[Math.floor(Math.random() * data.products.length)];
-              return randomProduct;
-            })
-          );
-  
-          // Renderizar productos relacionados.
-          products.forEach((product) => {
-            const productCard = `
-              <div class="col-md-4 mb-3">
-                <div class="card" style="width: 18rem;" data-product-id="${product.id}">
-                  <img src="${product.image}" class="card-img-top" alt="${product.name}">
+    // Si el carrito está vacío, muestra el mensaje y oculta el contenedor de productos
+    if (cart.length === 0) {
+      cartMessage.style.display = 'block';
+    } else {
+      cartMessage.style.display = 'none';
+      
+      // Generar el HTML para cada producto en el carrito
+      cart.forEach((product, index) => {
+        const productHTML = `
+          <div class="col-12 mb-3">
+            <div class="card">
+              <div class="row g-0">
+                <div class="col-md-3">
+                  <img src="${product.image}" class="img-fluid" alt="${product.name}">
+                </div>
+                <div class="col-md-9">
                   <div class="card-body">
                     <h5 class="card-title">${product.name}</h5>
+                    <p class="card-text">Precio: ${product.currency} ${product.price}</p>
+                    <p class="card-text">Subtotal: <span class="subtotal">${product.currency} ${product.price * product.quantity}</span></p>
+                    <label for="quantity-${index}">Cantidad:</label>
+                    <input type="number" id="quantity-${index}" class="form-control quantity-input" value="${product.quantity}" min="1">
                   </div>
-                </div>
-              </div>`;
-            relatedProductsDiv.innerHTML += productCard;
-          });
-  
-          // Agregar eventos a los productos relacionados.
-          relatedProductsDiv.querySelectorAll('.card').forEach((card) => {
-            card.addEventListener('click', function () {
-              const productId = card.getAttribute('data-product-id');
-              if (productId) {
-                localStorage.setItem('productId', productId);
-                window.location.href = 'product-info.html';
-              }
-            });
-          });
-        } catch (error) {
-          console.error('Error al cargar productos relacionados:', error);
-        }
-      } else {
-        cartMessage.style.display = 'none'; // Ocultar mensaje si hay productos.
-  
-        cartItems.forEach((item) => {
-          const subtotal = item.price * item.quantity;
-  
-          const itemCard = `
-            <div class="col-md-4 mb-3">
-              <div class="card">
-                <img src="${item.image}" class="card-img-top" alt="${item.name}">
-                <div class="card-body">
-                  <h5 class="card-title">${item.name}</h5>
-                  <p class="card-text">Precio: ${item.currency} ${item.price.toFixed(2)}</p>
-                  <div class="mb-2">
-                    <label>Cantidad:</label>
-                    <input type="number" class="form-control quantity-input" 
-                           value="${item.quantity}" min="1" data-id="${item.id}">
-                  </div>
-                  <p class="card-text subtotal-text">
-                    Subtotal: ${item.currency} ${subtotal.toFixed(2)}
-                  </p>
                 </div>
               </div>
-            </div>`;
-          cartItemsContainer.innerHTML += itemCard;
+            </div>
+          </div>
+        `;
+  
+        cartItemsContainer.innerHTML += productHTML;
+      });
+  
+      // Escuchar los cambios de cantidad y actualizar el subtotal
+      const quantityInputs = document.querySelectorAll('.quantity-input');
+      quantityInputs.forEach((input, index) => {
+        input.addEventListener('input', function () {
+          const newQuantity = parseInt(input.value);
+          if (newQuantity >= 1) {
+            cart[index].quantity = newQuantity;
+            localStorage.setItem('cart', JSON.stringify(cart));
+  
+            // Actualizar subtotal
+            const subtotalElement = input.closest('.card-body').querySelector('.subtotal');
+            subtotalElement.textContent = `${cart[index].currency} ${cart[index].price * newQuantity}`;
+          }
         });
+      });
+    }
+  });
+  */
+  document.addEventListener("DOMContentLoaded", function () {
+    const cartItemsContainer = document.getElementById("cart-items");
+    const cartMessage = document.getElementById("cart-message");
   
-        // Agregar eventos para recalcular el subtotal al cambiar la cantidad.
-        cartItemsContainer.querySelectorAll('.quantity-input').forEach((input) => {
-          input.addEventListener('input', function () {
-            const newQuantity = parseInt(this.value);
-            const productId = this.getAttribute('data-id');
-            const product = cartItems.find((item) => item.id === productId);
+    function renderCartItems() {
+      const cart = JSON.parse(localStorage.getItem("cart")) || [];
+      cartItemsContainer.innerHTML = ""; // Limpiar el contenedor
   
-            if (product) {
-              product.quantity = newQuantity;
-              const newSubtotal = product.price * newQuantity;
+      if (cart.length === 0) {
+        cartMessage.style.display = "block"; // Mostrar mensaje si el carrito está vacío
+      } else {
+        cartMessage.style.display = "none"; // Ocultar mensaje si hay productos en el carrito
   
-              // Actualizar el subtotal en la interfaz.
-              this.closest('.card-body')
-                .querySelector('.subtotal-text')
-                .textContent = `Subtotal: ${product.currency} ${newSubtotal.toFixed(2)}`;
+        // Generar el HTML para cada producto en el carrito
+        cart.forEach((product) => {
+          const { id, name, price, currency, image, quantity } = product;
   
-              // Actualizar el carrito en localStorage.
-              localStorage.setItem('cartItems', JSON.stringify(cartItems));
-            }
-          });
+          // Crear la tarjeta de producto
+          const productCard = document.createElement("div");
+          productCard.classList.add("card", "mb-3", "mx-2");
+          productCard.style.width = "18rem"; // Ancho de la tarjeta
+          productCard.innerHTML = `
+            <img src="${image}" class="img-fluid" alt="${name}" style="height: 150px; object-fit: cover;">
+            <div class="card-body">
+              <h5 class="card-title">${name}</h5>
+              <p class="card-text">Precio: ${currency} ${price}</p>
+              <div class="d-flex align-items-center">
+                <button class="btn btn-outline-primary btn-sm me-2" data-action="decrease" data-id="${id}">-</button>
+                <span class="quantity">${quantity}</span>
+                <button class="btn btn-outline-primary btn-sm ms-2" data-action="increase" data-id="${id}">+</button>
+              </div>
+              <div class="d-flex justify-content-between mt-2">
+                <button class="btn btn-danger btn-sm" data-action="remove" data-id="${id}">Eliminar</button>
+                <button class="btn btn-success btn-sm">Comprar ahora</button>
+              </div>
+            </div>
+          `;
+          cartItemsContainer.appendChild(productCard);
         });
       }
     }
   
-    loadCart();
-  });  */
+    cartItemsContainer.addEventListener("click", function (e) {
+      const cart = JSON.parse(localStorage.getItem("cart")) || [];
+      const productId = e.target.getAttribute("data-id");
   
-  document.addEventListener('DOMContentLoaded', function () {
-    function loadCart() {
-        const cartItemsContainer = document.getElementById('cart-items');
-        const cartMessage = document.getElementById('cart-message');
-        const cartItems = JSON.parse(localStorage.getItem('cartItems')) || [];
-
-        if (cartItems.length === 0) {
-            cartMessage.style.display = 'block'; // Muestra el mensaje de carrito vacío
-        } else {
-            cartMessage.style.display = 'none'; // Oculta el mensaje
-            cartItems.forEach(item => {
-                // Estructura de la tarjeta basada en el prototipo
-                const itemCard = `
-                    <div class="col-md-4 mb-3">
-                        <div class="card">
-                            <img src="${item.image}" class="card-img-top" alt="${item.name}">
-                            <div class="card-body">
-                                <h5 class="card-title">${item.name}</h5>
-                                <p class="card-text">Precio: ${item.currency} ${item.price.toFixed(2)}</p>
-                                <p class="card-text">Cantidad: ${item.quantity}</p>
-                                <p class="card-text">Subtotal: ${item.currency} ${(item.price * item.quantity).toFixed(2)}</p>
-                            </div>
-                        </div>
-                    </div>
-                `;
-                cartItemsContainer.innerHTML += itemCard;
-            });
+      if (e.target.dataset.action === "remove") {
+        const updatedCart = cart.filter(item => item.id !== productId);
+        localStorage.setItem("cart", JSON.stringify(updatedCart));
+        renderCartItems(); // Volver a renderizar el carrito
+      } else if (e.target.dataset.action === "increase") {
+        const product = cart.find(item => item.id === productId);
+        if (product) product.quantity += 1; // Aumentar cantidad
+        localStorage.setItem("cart", JSON.stringify(cart));
+        renderCartItems(); // Volver a renderizar el carrito
+      } else if (e.target.dataset.action === "decrease") {
+        const product = cart.find(item => item.id === productId);
+        if (product && product.quantity > 1) {
+          product.quantity -= 1; // Disminuir cantidad
+          localStorage.setItem("cart", JSON.stringify(cart));
+          renderCartItems(); // Volver a renderizar el carrito
         }
-    }
-
-    loadCart();
-});
+      }
+    });
+  
+    renderCartItems(); // Renderizar los productos al cargar la página
+  });
+  
