@@ -14,9 +14,9 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
   // badge del carrito
-  const cartCountBadge = document.getElementById('cart-count');
 
-  function updateCartCount() {
+  window.updateCartCount = function() {  // Definir la función en el ámbito global
+    const cartCountBadge = document.getElementById('cart-count');
     const cart = JSON.parse(localStorage.getItem("cart")) || [];
     const totalItems = cart.reduce((sum, product) => sum + product.quantity, 0);
     cartCountBadge.textContent = totalItems;
@@ -24,3 +24,4 @@ document.addEventListener('DOMContentLoaded', () => {
 
   updateCartCount(); 
 });
+

@@ -38,6 +38,7 @@
           cartItemsContainer.appendChild(productCard);
         });
       }
+      updateCartCount();
     }
   
     cartItemsContainer.addEventListener("click", function (e) {
@@ -61,6 +62,7 @@
           renderCartItems(); // Volver a renderizar el carrito
         }
       }
+      updateCartCount();
     });
   
     renderCartItems(); 
