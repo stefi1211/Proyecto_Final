@@ -12,30 +12,82 @@
 </head>
 <body>
 
-    <nav class="navbar navbar-expand-lg navbar-dark bg-dark p-1">
-        <div class="container">
-          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
-            aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-          </button>
-          <div class="collapse navbar-collapse" id="navbarNav">
-            <ul class="navbar-nav w-100 justify-content-between">
-              <li class="nav-item">
-                <a class="nav-link active" href="index.html">Inicio</a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" href="categories.html">Categorías</a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" href="sell.html">Vender</a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" href="login.html">Login</a>
-              </li>
+  <nav class="navbar navbar-expand-lg p-1">
+    <div class="container">
+      <!-- toogle -->
+      <button
+        class="navbar-toggler"
+        type="button"
+        data-bs-toggle="collapse"
+        data-bs-target="#navbarNav"
+        aria-controls="navbarNav"
+        aria-expanded="false"
+        aria-label="Toggle navigation"
+      >
+        <span class="navbar-toggler-icon"></span>
+      </button>
+  
+      <!-- links navbar -->
+      <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav w-100 justify-content-between">
+          <li class="nav-item">
+            <a class="navbar-brand" href="index.html">
+              <img src="img/logo-navbar.png" alt="Logo" height="30" class="d-inline-block align-text-top">
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="categories.html">Categorías</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="sell.html">Vender</a>
+          </li>
+  
+          <!-- tema -->
+          <li class="nav-item dropdown">
+            <a
+              class="nav-link dropdown-toggle"
+              href="#"
+              id="theme-link"
+              role="button"
+              data-bs-toggle="dropdown"
+              aria-expanded="false"
+            >
+              Tema
+            </a>
+            <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="theme-link">
+              <li><a class="dropdown-item" href="#" data-theme="light">Claro</a></li>
+              <li><a class="dropdown-item" href="#" data-theme="dark">Oscuro</a></li>
+              <li><a class="dropdown-item" href="#" data-theme="auto">Auto</a></li>
             </ul>
-          </div>
-        </div>
-      </nav>
+          </li>
+  
+          <!-- usuario -->
+          <li class="nav-item dropdown">
+            <a
+              class="nav-link dropdown-toggle"
+              href="#"
+              id="user-link"
+              role="button"
+              data-bs-toggle="dropdown"
+              aria-expanded="false"
+            >
+              Usuario
+            </a>
+            <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="user-link">
+              <li>
+                <a class="dropdown-item" href="cart.html">
+                  Mi carrito <span id="cart-count" class="badge bg-warning ms-1">0</span>
+                </a>
+              </li>
+              <li><a class="dropdown-item" href="my-profile.html">Mi perfil</a></li>
+              <li><hr class="dropdown-divider" /></li>
+              <li><a class="dropdown-item" href="login.html">Cerrar sesión</a></li>
+            </ul>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </nav>
 
     <div class="container login-container">
       <div class="login-header">
@@ -66,11 +118,18 @@
         </div>
     </div>
 
-    <footer class="text-muted">
+    <footer class="text-muted footer">
       <div class="container">
-        <p class="float-end">
-          <a href="#">Volver arriba</a>
-        </p>
+        <div class="links-github m-2 text-center">
+        <p>♡ Integrantes del equipo ♡</p>
+        <a href="https://github.com/Aguscampu">Agustina campuzano |</a>
+        <a href="https://github.com/melizalazaroff"> Meliza Lazaroff |</a>
+        <a href="https://github.com/IsabellaGhiga"> Isabella Ghiga |</a>
+        <a href="https://github.com/kimberly64"> Kimberly Silva |</a>
+        <a href="https://github.com/sofiacarrion1"> Sofia Carrion |</a>
+        <a href="https://github.com/stefi1211"> Stefani De león</a>
+      </div>
+        <p class="float-end"><a href="#">Volver arriba</a></p>
         <p>Este sitio forma parte de <a href="https://jovenesaprogramar.edu.uy/" target="_blank">Jovenes a Programar</a></p>
       </div>
     </footer>

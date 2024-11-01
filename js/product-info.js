@@ -82,6 +82,7 @@ addToCartButton.addEventListener('click', function () {
     localStorage.setItem('cart', JSON.stringify(cart));
     alert('Producto añadido al carrito.');
   }
+  updateCartCount();
 });
 
 

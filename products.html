@@ -9,14 +9,7 @@
     <title>eMercado - Todo lo que busques está aquí</title>
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap"
-      rel="stylesheet"
-    />
-    <link
-      href="https://fonts.googleapis.com/css?family=Raleway:300,300i,400,400i,700,700i,900,900i"
-      rel="stylesheet"
-    />
+  
     <link href="css/font-awesome.min.css" rel="stylesheet" />
     <link href="css/bootstrap.min.css" rel="stylesheet" />
     <link rel="stylesheet" href="/css/styles-product-info.css" />
@@ -24,8 +17,9 @@
   </head>
 
   <body>
-    <nav class="navbar navbar-expand-lg navbar-dark bg-dark p-1">
+    <nav class="navbar navbar-expand-lg p-1">
       <div class="container">
+        <!-- toogle -->
         <button
           class="navbar-toggler"
           type="button"
@@ -37,10 +31,14 @@
         >
           <span class="navbar-toggler-icon"></span>
         </button>
+    
+        <!-- links navbar -->
         <div class="collapse navbar-collapse" id="navbarNav">
           <ul class="navbar-nav w-100 justify-content-between">
             <li class="nav-item">
-              <a class="nav-link" href="index.html">Inicio</a>
+              <a class="navbar-brand" href="index.html">
+                <img src="img/logo-navbar.png" alt="Logo" height="30" class="d-inline-block align-text-top">
+              </a>
             </li>
             <li class="nav-item">
               <a class="nav-link" href="categories.html">Categorías</a>
@@ -48,41 +46,59 @@
             <li class="nav-item">
               <a class="nav-link" href="sell.html">Vender</a>
             </li>
-            <li class="nav-item dropdown-toggle">
-              <a class="nav-link dropdown-toggle" 
-              href="#"
-              id="user-link"
-              role="button"
-              data-bs-toggle="dropdown"
-              aria-expanded="false"
+    
+            <!-- tema -->
+            <li class="nav-item dropdown">
+              <a
+                class="nav-link dropdown-toggle"
+                href="#"
+                id="theme-link"
+                role="button"
+                data-bs-toggle="dropdown"
+                aria-expanded="false"
               >
-              Usuario
-            </a>
-            <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="userDropdown">
-              <li><a class="dropdown-item" href="cart.html">Mi carrito <span id="cart-count" class="badge bg-warning ms-1">0</span> </a></li>
-              <li><a class="dropdown-item" href="my-profile.html">Mi perfil</a></li>
-              <li><hr class="dropdown-divider" /></li>
-              <li><a class="dropdown-item" href="login.html">Cerrar sesión</a></li>
-
-            
+                Tema
+              </a>
+              <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="theme-link">
+                <li><a class="dropdown-item" href="#" data-theme="light">Claro</a></li>
+                <li><a class="dropdown-item" href="#" data-theme="dark">Oscuro</a></li>
+                <li><a class="dropdown-item" href="#" data-theme="auto">Auto</a></li>
+              </ul>
+            </li>
+    
+            <!-- usuario -->
+            <li class="nav-item dropdown">
+              <a
+                class="nav-link dropdown-toggle"
+                href="#"
+                id="user-link"
+                role="button"
+                data-bs-toggle="dropdown"
+                aria-expanded="false"
+              >
+                Usuario
+              </a>
+              <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="user-link">
+                <li>
+                  <a class="dropdown-item" href="cart.html">
+                    Mi carrito <span id="cart-count" class="badge bg-warning ms-1">0</span>
+                  </a>
+                </li>
+                <li><a class="dropdown-item" href="my-profile.html">Mi perfil</a></li>
+                <li><hr class="dropdown-divider" /></li>
+                <li><a class="dropdown-item" href="login.html">Cerrar sesión</a></li>
+              </ul>
             </li>
           </ul>
         </div>
       </div>
-      <div class="dropdown">
-        <button class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
-          Tema
-        </button>
-        <ul class="dropdown-menu">
-          <li><a class="dropdown-item" href="#" data-theme="light">Claro</a></li>
-          <li><a class="dropdown-item" href="#" data-theme="dark">Oscuro</a></li>
-          <li><a class="dropdown-item" href="#" data-theme="auto">Auto</a></li>
-        </ul>
-      </div>
-      </div>
     </nav>
 
   <div class="container mt-4">
+    <a href="javascript:history.back()" class="back-to-home">
+      <span style="font-size: 1.5rem; margin-right: 10px">&#8592;</span>
+      Volver atrás
+    </a>
     <div class="row">
       <div class="col text-end">
         <div class="btn-group btn-group-toggle mb-4" data-bs-toggle="buttons">
@@ -125,19 +141,22 @@
     </div>
   </div>
 
-    <footer class="text-muted">
-      <div class="container">
-        <p class="float-end">
-          <a href="#">Volver arriba</a>
-        </p>
-        <p>
-          Este sitio forma parte de
-          <a href="https://jovenesaprogramar.edu.uy/" target="_blank"
-            >Jovenes a Programar</a
-          >
-        </p>
-      </div>
-    </footer>
+  <footer class="text-muted footer">
+    <div class="container">
+      <div class="links-github m-2 text-center">
+      <p>♡ Integrantes del equipo ♡</p>
+      <a href="https://github.com/Aguscampu">Agustina campuzano |</a>
+      <a href="https://github.com/melizalazaroff"> Meliza Lazaroff |</a>
+      <a href="https://github.com/IsabellaGhiga"> Isabella Ghiga |</a>
+      <a href="https://github.com/kimberly64"> Kimberly Silva |</a>
+      <a href="https://github.com/sofiacarrion1"> Sofia Carrion |</a>
+      <a href="https://github.com/stefi1211"> Stefani De león</a>
+    </div>
+      <p class="float-end"><a href="#">Volver arriba</a></p>
+      <p>Este sitio forma parte de <a href="https://jovenesaprogramar.edu.uy/" target="_blank">Jovenes a Programar</a></p>
+    </div>
+  </footer>
+
     <div id="spinner-wrapper">
       <div class="lds-ring">
         <div></div>
