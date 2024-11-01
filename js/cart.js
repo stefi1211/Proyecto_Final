@@ -26,7 +26,7 @@ document.addEventListener('DOMContentLoaded', function () {
         productCard.classList.add('card', 'mb-3', 'mx-2');
         productCard.style.width = '25rem';
         productCard.innerHTML = `
-            <img src="${image}" class="img-fluid pt-2" alt="${name}" style="height: 150px; object-fit: cover;">
+            <img src="${image}" class="img-fluid pt-2" alt="${name}" style="height: 200px; object-fit: cover;">
             <div class="card-body">
               <h5 class="card-title">${name}</h5>
               <p class="card-text">Precio: ${currency} ${price}</p>
