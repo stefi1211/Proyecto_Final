@@ -54,6 +54,27 @@ body {
     text-decoration: none;
 }
 
+.btn-pedido {
+    background-color: #fff4d7;
+    text-decoration: none;
+    color: #a88734;
+    padding: 10px 20px;
+    border: 1px solid #a88734;
+    border-radius: 50px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    width: 50%;
+    text-align: center;
+  }
+  
+  .btn-pedido:hover {
+    text-decoration: none;
+    border: 1px solid #a88734;
+    color: #a88734;
+    background-color: #e9e0ca;
+  }
+
 /*contenedor del título */
 .login-header {
     text-align: center; 
