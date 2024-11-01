@@ -19,6 +19,7 @@
     />
     <link href="css/font-awesome.min.css" rel="stylesheet" />
     <link href="css/bootstrap.min.css" rel="stylesheet" />
+    <link rel="stylesheet" href="/css/styles-product-info.css" />
     <link href="css/styles1.css" rel="stylesheet" />
   </head>
 
@@ -39,7 +40,7 @@
         <div class="collapse navbar-collapse" id="navbarNav">
           <ul class="navbar-nav w-100 justify-content-between">
             <li class="nav-item">
-              <a class="nav-link active" href="index.html">Inicio</a>
+              <a class="nav-link" href="index.html">Inicio</a>
             </li>
             <li class="nav-item">
               <a class="nav-link" href="categories.html">Categorías</a>
@@ -47,11 +48,37 @@
             <li class="nav-item">
               <a class="nav-link" href="sell.html">Vender</a>
             </li>
-            <li class="nav-item">
-              <a class="nav-link" id="user-link" href="login.html">Login</a>
+            <li class="nav-item dropdown-toggle">
+              <a class="nav-link dropdown-toggle" 
+              href="#"
+              id="user-link"
+              role="button"
+              data-bs-toggle="dropdown"
+              aria-expanded="false"
+              >
+              Usuario
+            </a>
+            <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="userDropdown">
+              <li><a class="dropdown-item" href="cart.html">Mi carrito <span id="cart-count" class="badge bg-warning ms-1">0</span> </a></li>
+              <li><a class="dropdown-item" href="my-profile.html">Mi perfil</a></li>
+              <li><hr class="dropdown-divider" /></li>
+              <li><a class="dropdown-item" href="login.html">Cerrar sesión</a></li>
+
+            
             </li>
           </ul>
         </div>
+      </div>
+      <div class="dropdown">
+        <button class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+          Tema
+        </button>
+        <ul class="dropdown-menu">
+          <li><a class="dropdown-item" href="#" data-theme="light">Claro</a></li>
+          <li><a class="dropdown-item" href="#" data-theme="dark">Oscuro</a></li>
+          <li><a class="dropdown-item" href="#" data-theme="auto">Auto</a></li>
+        </ul>
+      </div>
       </div>
     </nav>
 
@@ -125,6 +152,7 @@
   <script src="js/init.js"></script>
   <script src="/js/updatenavbar.js"></script>
   <script src="js/products.js"></script>
+  <script src="js/cart.js"></script>
 </body>
 
 </html>

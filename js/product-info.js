@@ -52,11 +52,41 @@ document.addEventListener('DOMContentLoaded', function () {
                     <p>${description}</p>
                     <p class="product-sold-count">Vendidos: ${soldCount}</p>
                     <div class="action-buttons">
-        <button class="btn-buy-now">Comprar ahora</button>
         <button class="btn-add-cart">Añadir al carrito</button>
+        <button class="btn-cart">Ir al carrito</button>
     </div>
                 </div>
             `;
+
+      document
+        .querySelector('.btn-cart')
+        .addEventListener('click', function () {
+          window.location.href = 'cart.html';
+        });
+
+      const addToCartButton = document.querySelector('.btn-add-cart');
+      addToCartButton.addEventListener('click', function () {
+        let cart = JSON.parse(localStorage.getItem('cart')) || [];
+        const existingProductIndex = cart.findIndex(
+          (item) => item.id === productId
+        );
+
+        if (existingProductIndex > -1) {
+          alert('El producto ya está en el carrito.');
+        } else {
+          cart.push({
+            id: productId,
+            name,
+            price: cost,
+            currency,
+            image: mainImage,
+            quantity: 1,
+          });
+          localStorage.setItem('cart', JSON.stringify(cart));
+          alert('Producto añadido al carrito.');
+        }
+        updateCartCount();
+      });
 
       // cambiar img principal
       const thumbnailImages = document.querySelectorAll('.thumbnail');
@@ -176,34 +206,36 @@ document.addEventListener('DOMContentLoaded', function () {
 });
 
 // Cambiar tema y almacenar la preferencia. git
-document.addEventListener("DOMContentLoaded", () => {
+document.addEventListener('DOMContentLoaded', () => {
   const themeItems = document.querySelectorAll('.dropdown-item');
 
   // Función para aplicar el tema
   function applyTheme(theme) {
-      document.body.classList.remove('light', 'dark');
-      if (theme === 'light') {
-          document.body.classList.add('light');
-      } else if (theme === 'dark') {
-          document.body.classList.add('dark');
-      }
+    document.body.classList.remove('light', 'dark');
+    if (theme === 'light') {
+      document.body.classList.add('light');
+    } else if (theme === 'dark') {
+      document.body.classList.add('dark');
+    }
   }
 
   // Cargar tema desde local storage
   const savedTheme = localStorage.getItem('theme') || 'auto';
   if (savedTheme === 'auto') {
-      const isDarkMode = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
-      applyTheme(isDarkMode ? 'dark' : 'light');
+    const isDarkMode =
+      window.matchMedia &&
+      window.matchMedia('(prefers-color-scheme: dark)').matches;
+    applyTheme(isDarkMode ? 'dark' : 'light');
   } else {
-      applyTheme(savedTheme);
+    applyTheme(savedTheme);
   }
 
   // Cambiar tema y guardar en local storage al hacer click
-  themeItems.forEach(item => {
-      item.addEventListener('click', (event) => {
-          const selectedTheme = event.target.getAttribute('data-theme');
-          localStorage.setItem('theme', selectedTheme);
-          applyTheme(selectedTheme);
-      });
+  themeItems.forEach((item) => {
+    item.addEventListener('click', (event) => {
+      const selectedTheme = event.target.getAttribute('data-theme');
+      localStorage.setItem('theme', selectedTheme);
+      applyTheme(selectedTheme);
+    });
   });
 });
