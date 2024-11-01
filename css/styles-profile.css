@@ -1,3 +1,7 @@
+body {
+  font-family: "Cabin", sans-serif;
+}
+
 .back-to-home {
     color: rgb(74, 74, 74);
     text-decoration: none;
@@ -49,7 +53,7 @@
 }
 
 
-  .btn1 {
+  .btn-perfil {
     background-color: #fff1d6e7;
     padding: 1% 5%;
     border-radius: 60px;
@@ -57,7 +61,7 @@
     font-weight: 300;
 }
 
-.btn1:hover {
+.btn-perfil:hover {
     background-color: #e0d4bce7;
 }
 

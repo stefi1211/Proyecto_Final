@@ -36,7 +36,7 @@ document.addEventListener('DOMContentLoaded', function () {
                 <button class="btn btn-outline-primary btn-sm ms-2" data-action="increase" data-id="${id}">+</button>
               </div>
               <div class="d-flex justify-content-between mt-2">
-                <button class="btn btn-danger btn-sm" data-action="remove" data-id="${id}">Eliminar</button>
+                <button class="btn btn-warning btn-sm" data-action="remove" data-id="${id}">Eliminar</button>
               </div>
             </div>
           `;
