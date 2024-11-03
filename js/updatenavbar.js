@@ -15,13 +15,16 @@ document.addEventListener('DOMContentLoaded', () => {
 
   // badge del carrito
 
-  window.updateCartCount = function() {  // Definir la función en el ámbito global
-    const cartCountBadge = document.getElementById('cart-count');
+  window.updateCartCount = function() { 
+    const cartCountBadges = document.querySelectorAll('#cart-count, #cart-count2');
     const cart = JSON.parse(localStorage.getItem("cart")) || [];
     const totalItems = cart.reduce((sum, product) => sum + product.quantity, 0);
-    cartCountBadge.textContent = totalItems;
-  }
 
-  updateCartCount(); 
+    cartCountBadges.forEach(badge => {
+        badge.textContent = totalItems;
+    });
+}
+
+updateCartCount(); 
+
 });
-

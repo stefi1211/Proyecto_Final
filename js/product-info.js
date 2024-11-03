@@ -53,11 +53,12 @@ document.addEventListener('DOMContentLoaded', function () {
                     <p class="product-sold-count">Vendidos: ${soldCount}</p>
                     <div class="action-buttons">
         <button class="btn-add-cart">Añadir al carrito</button>
-        <button class="btn-cart">Ir al carrito</button>
+        <button class="btn-cart">Ir al carrito<span id="cart-count2" class="badge bg-warning ms-1">0</span></button>
     </div>
                 </div>
             `;
 
+            updateCartCount();
 
             document.querySelector('.btn-cart').addEventListener('click', function() {
               window.location.href = 'cart.html';
@@ -103,8 +104,8 @@ addToCartButton.addEventListener('click', function () {
       // productos relacionados
       relatedProducts.forEach((product) => {
         relatedProductsDiv.innerHTML += `
-                    <div class="card" style="width: 18rem;" data-product-id="${product.id}">
-                        <img class="card-img-top" src="${product.image}" alt="${product.name}">
+                    <div class="card m-2" style="width: 18rem;" data-product-id="${product.id}">
+                        <img class="card-img-top mt-1" src="${product.image}" alt="${product.name}">
                         <div class="card-body">
                          <h5 class="card-title">${product.name}</h5>
                         </div>
