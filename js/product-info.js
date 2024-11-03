@@ -104,7 +104,7 @@ addToCartButton.addEventListener('click', function () {
       // productos relacionados
       relatedProducts.forEach((product) => {
         relatedProductsDiv.innerHTML += `
-                    <div class="card m-2" style="width: 18rem;" data-product-id="${product.id}">
+                    <div class="card m-2" style="width: 18rem; cursor: pointer;" data-product-id="${product.id}">
                         <img class="card-img-top mt-1" src="${product.image}" alt="${product.name}">
                         <div class="card-body">
                          <h5 class="card-title">${product.name}</h5>
