@@ -3,6 +3,19 @@ document.addEventListener('DOMContentLoaded', function () {
   const cartMessage = document.getElementById('cart-message');
   const subtotalElement = document.getElementById('subtotal');
   const totalElement = document.getElementById('total');
+  //variable de envío y selección de envío:
+  let shippingCost = 0;
+  const shippingSelect = document.getElementById('shipping');
+  //Sección de costo de envío actualizado
+  if (shippingSelect) {
+    shippingSelect.addEventListener('change', () => {
+      shippingCost = parseFloat(shippingSelect.value) || 0; 
+      renderCartItems();
+    });
+  }
+  function calculateTotal(cart) {
+    return cart.reduce((total, product) => total + product.price * product.quantity, 0);
+  }
 
   function renderCartItems() {
     const cart = JSON.parse(localStorage.getItem('cart')) || [];
@@ -14,15 +27,10 @@ document.addEventListener('DOMContentLoaded', function () {
       totalElement.innerText = '$0';
     } else {
       cartMessage.style.display = 'none'; // Ocultar mensaje si hay productos en el carrito
-      let total = 0;
-
       cart.forEach((product) => {
         const { id, name, price, currency, image, quantity } = product;
-        const productSubtotal = price * quantity;
-        total += productSubtotal;
-
-        // tarjeta del producto
-        const productCard = document.createElement('div');
+       //Tarjeta de producto actualizada
+       const productCard = document.createElement('div');
         productCard.classList.add('card', 'mb-3', 'mx-2');
         productCard.style.width = '25rem';
         productCard.innerHTML = `
@@ -42,8 +50,9 @@ document.addEventListener('DOMContentLoaded', function () {
           `;
         cartItemsContainer.appendChild(productCard);
       });
-      subtotalElement.innerText = `$${total}`;
-      totalElement.innerText = `$${total}`;
+      const subtotal = calculateTotal(cart);
+      subtotalElement.innerText = `$${subtotal.toFixed(2)}`;
+      totalElement.innerText = `$${(subtotal + shippingCost).toFixed(2)}`;
     }
     updateCartCount();
   }
