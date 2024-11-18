@@ -148,6 +148,7 @@
           <div class="tab-pane fade show active position-relative" id="shipping-section" role="tabpanel">
             <label for="shipping-type" class="form-label">Elige el tipo de envío:</label>
             <select class="form-control" id="shipping-type" required>
+              <option value="" disabled selected >Seleccionar opción </option>
               <option value="0.15">Premium 2 a 5 días (15%)</option>
               <option value="0.07">Express 5 a 8 días (7%)</option>
               <option value="0.05">Standard 12 a 15 días (5%)</option>
@@ -163,23 +164,28 @@
             <div class="mb-3">
               <label for="department" class="form-label">Departamento *</label>
               <input type="text" class="form-control" id="department" required>
+              <div class="invalid-feedback">Debe seleccionar un Departamento.</div>
             </div>
             <div class="mb-3">
               <label for="locality" class="form-label">Localidad *</label>
               <input type="text" class="form-control" id="locality" required>
+              <div class="invalid-feedback">Debe seleccionar una Localidad.</div>
             </div>
             <div class="mb-3">
               <label for="street" class="form-label">Calle *</label>
               <input type="text" class="form-control" id="street" required>
+              <div class="invalid-feedback">Debe indicar una Calle.</div>
             </div>
             <div class="mb-3 row">
               <div class="col">
                 <label for="number" class="form-label">Número *</label>
                 <input type="text" class="form-control" id="number" required>
+                <div class="invalid-feedback">Debe indicar un Número.</div>
               </div>
               <div class="col">
                 <label for="corner" class="form-label">Esquina *</label>
                 <input type="text" class="form-control" id="corner" required>
+                <div class="invalid-feedback">Debe indicar una Esquina.</div>
               </div>
             </div>
             <div class="navigation-arrows mt-2">
@@ -210,7 +216,7 @@
             <p><strong>Subtotal:</strong> <span id="summary-subtotal">$0</span></p>
             <p><strong>Costo de Envío:</strong> <span id="summary-shipping">$0</span></p>
             <p><strong>Total:</strong> <span id="summary-total">$0</span></p>
-            <button type="submit" class="btn btn-comprar w-100 my-3">Finalizar Compra</button>
+            <button type="submit" id="finalize-order" class="btn btn-comprar w-100 my-3">Finalizar Compra</button>
             <div class="navigation-arrows">
               <a href="#" class="prev-step" data-prev="#payment-tab"><span>&#8592;</span> Volver</a>
             </div>
@@ -218,7 +224,23 @@
         </div>
       </form>
     </div>
-
+    
+    <div class="modal fade" id="successModal" tabindex="-1" aria-labelledby="successModalLabel" aria-hidden="true">
+      <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="successModalLabel">¡Compra realizada con éxito!</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          </div>
+          <div class="modal-body">
+            Gracias por tu compra. Recibirás un correo electrónico con los detalles.
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-warning" data-bs-dismiss="modal">Aceptar</button>
+          </div>
+        </div>
+      </div>
+    </div>
 
   </main>
 
