@@ -1,0 +1,83 @@
+.btn-comprar {
+    background-color: #fff4d7;
+    text-decoration: none;
+    color: #a88734;
+    padding: 10px 20px;
+    border: 1px solid #a88734;
+    border-radius: 50px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    width: 50%;
+    text-align: center;
+  }
+  
+  .btn-comprar:hover {
+    text-decoration: none;
+    border: 1px solid #a88734;
+    color: #a88734;
+    background-color: #e9e0ca;
+  }
+
+.email {
+    background-color: #fffaf1e7;
+}
+
+.email:hover {
+    background-color: #fffaf1e7;
+}
+
+.form-control:focus{
+    border: 1px solid rgb(31, 31, 31);
+    outline: none;
+    background-color: #fffaf1e7;
+  }
+
+  .container-form {
+    background-color: #fcfcfce7;
+    box-shadow: 0px 0px 5px rgb(223, 223, 223);
+  }
+
+  .input-lleno {
+    background-color: #fffaf1e7;
+  }
+
+  input:focus, select:focus, select, input.form-control:focus {
+
+    outline:none !important;
+
+    outline-width: 0 !important;
+
+    box-shadow: none;
+
+    -moz-box-shadow: none;
+
+    -webkit-box-shadow: none;
+
+}
+
+.nav-link{
+    color: #e4c578;
+}
+.nav-link:hover{
+    color: #ceb36f;
+    
+}
+
+.navigation-arrows {
+    bottom: 15px;
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    padding: 0 15px;
+  }
+  
+  .navigation-arrows a {
+    text-decoration: none;
+    font-size: 1rem;
+    color: #4d4d4d;
+  }
+  
+  .navigation-arrows a:hover {
+    color: #0c0c0c;
+  }

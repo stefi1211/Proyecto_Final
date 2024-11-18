@@ -3,74 +3,217 @@ document.addEventListener('DOMContentLoaded', function () {
   const cartMessage = document.getElementById('cart-message');
   const subtotalElement = document.getElementById('subtotal');
   const totalElement = document.getElementById('total');
+  const placeOrderButton = document.getElementById('place-order');
+  const orderFormContainer = document.getElementById('order-form-container');
+  const orderForm = document.getElementById('orderForm');
+  const shippingTypeSelect = document.getElementById('shipping-type');
+  const summarySubtotal = document.getElementById('summary-subtotal');
+  const summaryShipping = document.getElementById('summary-shipping');
+  const summaryTotal = document.getElementById('summary-total');
+  const prevStepLinks = document.querySelectorAll('.prev-step');
+  const nextStepLinks = document.querySelectorAll('.next-step');
+  const finalizeButton = document.getElementById('finalize-order');  
+  const successModal = new bootstrap.Modal(document.getElementById('successModal'));  
 
+
+  // renderizar carrito
   function renderCartItems() {
     const cart = JSON.parse(localStorage.getItem('cart')) || [];
-    cartItemsContainer.innerHTML = ''; // Limpiar el contenedor
+    cartItemsContainer.innerHTML = '';
+
 
     if (cart.length === 0) {
-      cartMessage.style.display = 'block'; // Mostrar mensaje si el carrito está vacío
+      cartMessage.style.display = 'block';
       subtotalElement.innerText = '$0';
       totalElement.innerText = '$0';
     } else {
-      cartMessage.style.display = 'none'; // Ocultar mensaje si hay productos en el carrito
+      cartMessage.style.display = 'none';
       let total = 0;
+
 
       cart.forEach((product) => {
         const { id, name, price, currency, image, quantity } = product;
         const productSubtotal = price * quantity;
         total += productSubtotal;
 
-        // tarjeta del producto
+
         const productCard = document.createElement('div');
         productCard.classList.add('card', 'mb-3', 'mx-2');
         productCard.style.width = '25rem';
         productCard.innerHTML = `
-            <img src="${image}" class="img-fluid pt-2" alt="${name}" style="height: 200px; object-fit: cover;">
-            <div class="card-body">
-              <h5 class="card-title">${name}</h5>
-              <p class="card-text">Precio: ${currency} ${price}</p>
-              <div class="d-flex align-items-center">
-                <button class="btn btn-outline-primary btn-sm me-2" data-action="decrease" data-id="${id}">-</button>
-                <span class="quantity">${quantity}</span>
-                <button class="btn btn-outline-primary btn-sm ms-2" data-action="increase" data-id="${id}">+</button>
-              </div>
-              <div class="d-flex justify-content-between mt-2">
-                <button class="btn btn-warning btn-sm" data-action="remove" data-id="${id}">Eliminar</button>
-              </div>
+          <img src="${image}" class="img-fluid pt-2" alt="${name}" style="height: 200px; object-fit: cover;">
+          <div class="card-body">
+            <h5 class="card-title">${name}</h5>
+            <p class="card-text">Precio: ${currency} ${price}</p>
+            <div class="d-flex align-items-center">
+              <button class="btn btn-outline-primary btn-sm me-2" data-action="decrease" data-id="${id}">-</button>
+              <span class="quantity">${quantity}</span>
+              <button class="btn btn-outline-primary btn-sm ms-2" data-action="increase" data-id="${id}">+</button>
             </div>
-          `;
+            <button class="btn btn-warning btn-sm mt-2" data-action="remove" data-id="${id}">Eliminar</button>
+          </div>`;
         cartItemsContainer.appendChild(productCard);
       });
+
+
       subtotalElement.innerText = `$${total}`;
       totalElement.innerText = `$${total}`;
     }
-    updateCartCount();
   }
 
+
+  // manejo de eventos del carrito
   cartItemsContainer.addEventListener('click', function (e) {
     const cart = JSON.parse(localStorage.getItem('cart')) || [];
     const productId = e.target.getAttribute('data-id');
 
+
     if (e.target.dataset.action === 'remove') {
       const updatedCart = cart.filter((item) => item.id !== productId);
       localStorage.setItem('cart', JSON.stringify(updatedCart));
-      renderCartItems(); // Volver a renderizar el carrito
+      renderCartItems();
     } else if (e.target.dataset.action === 'increase') {
       const product = cart.find((item) => item.id === productId);
-      if (product) product.quantity += 1; // Aumentar cantidad
+      if (product) product.quantity += 1;
       localStorage.setItem('cart', JSON.stringify(cart));
-      renderCartItems(); // Volver a renderizar el carrito
+      renderCartItems();
     } else if (e.target.dataset.action === 'decrease') {
       const product = cart.find((item) => item.id === productId);
       if (product && product.quantity > 1) {
-        product.quantity -= 1; // Disminuir cantidad
+        product.quantity -= 1;
         localStorage.setItem('cart', JSON.stringify(cart));
-        renderCartItems(); // Volver a renderizar el carrito
+        renderCartItems();
       }
     }
-    updateCartCount();
   });
 
-  renderCartItems();
+
+  // formulario de pedido
+  function calculateCosts() {
+    const cart = JSON.parse(localStorage.getItem('cart')) || [];
+    const subtotal = cart.reduce((acc, product) => acc + product.price * product.quantity, 0);
+    const shippingCost = subtotal * parseFloat(shippingTypeSelect.value || 0);
+    const total = subtotal + shippingCost;
+
+
+    summarySubtotal.innerText = `$${subtotal.toFixed(2)}`;
+    summaryShipping.innerText = `$${shippingCost.toFixed(2)}`;
+    summaryTotal.innerText = `$${total.toFixed(2)}`;
+  }
+
+
+  placeOrderButton.addEventListener('click', function () {
+    const cart = JSON.parse(localStorage.getItem('cart')) || [];
+    if (cart.length === 0) {
+      alert('Tu carrito está vacío.');
+    } else {
+      orderFormContainer.style.display = 'block';
+      calculateCosts();
+    }
+  });
+
+
+  shippingTypeSelect?.addEventListener('change', calculateCosts);
+
+
+  // funcionamiento de tabs
+  prevStepLinks.forEach((link) => {
+    link.addEventListener('click', function (event) {
+      event.preventDefault();
+      const prevTabId = link.getAttribute('data-prev');
+      if (prevTabId) document.querySelector(prevTabId)?.click();
+    });
+  });
+
+
+  nextStepLinks.forEach((link) => {
+    link.addEventListener('click', function (event) {
+      event.preventDefault();
+      const currentTab = this.closest('.tab-pane');
+      const nextTabId = this.getAttribute('data-next');
+
+
+      // validacion de la pestaña actual
+      if (validateCurrentTab(currentTab)) {
+        if (nextTabId) document.querySelector(nextTabId)?.click();
+      } else {
+        alert('Por favor, completa todos los campos requeridos antes de continuar.');
+      }
+    });
+  });
+
+
+  function validateCurrentTab(tab) {
+    const requiredFields = tab.querySelectorAll('[required]');
+    let isValid = true;
+
+
+    requiredFields.forEach((field) => {
+      if (field.type === 'radio') {
+        const isRadioGroupValid = tab.querySelector(`input[name="${field.name}"]:checked`);
+        if (!isRadioGroupValid) {
+          field.classList.add('is-invalid');
+          isValid = false;
+        } else {
+          field.classList.remove('is-invalid');
+        }
+      } else if (!field.value) {
+        field.classList.add('is-invalid');
+        isValid = false;
+      } else {
+        field.classList.remove('is-invalid');
+      }
+    });
+
+
+    return isValid;
+  }
+
+
+  // Cambia el color de los campos llenos
+  function checkInputFilled(input) {
+    if (input.value.trim() !== '') {
+      input.classList.add('input-lleno');
+    } else {
+      input.classList.remove('input-lleno');
+    }
+  }
+
+
+  const inputs = orderForm.querySelectorAll('input');
+  inputs.forEach(input => {
+    checkInputFilled(input);
+    input.addEventListener('input', () => checkInputFilled(input));
+  });
+
+
+  // finalizar compra
+  finalizeButton.addEventListener('click', function (event) {
+    event.preventDefault();
+    const isValid = validateForm(orderForm);
+
+
+    if (isValid) {
+      successModal.show();
+    } else {
+      alert('Por favor, completa todos los campos antes de finalizar.');
+    }
+  });
+
+
+  function validateForm(form) {
+    const requiredFields = form.querySelectorAll('[required]');
+    let valid = true;
+
+
+    requiredFields.forEach((field) => {
+      if (!field.value) {
+        valid = false;
+      }
+    });
+
+
+    return valid;
+  }
+  renderCartItems(); // Renderizar carrito
 });
