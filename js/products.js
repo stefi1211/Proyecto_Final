@@ -5,7 +5,7 @@ document.addEventListener('DOMContentLoaded', function () {
         return;
     }
     
-    const url = `https://japceibal.github.io/emercado-api/cats_products/${categoryId}.json`; // Crear la URL dinámica usando el identificador de categoría
+    const url = `https://japceibal.github.io/emercado-api/cats_products/${categoryId}.json`; 
     const lista = document.getElementById('productos-lista');
     const searchInput = document.getElementById('search-input');
     let productos = [];
