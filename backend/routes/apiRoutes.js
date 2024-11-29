@@ -4,19 +4,20 @@ const path = require('path');
 const bcrypt = require('bcryptjs'); // manejo de las comtraseñas
 const jwt = require('jsonwebtoken');
 const mysql = require('mysql2');
+require('dotenv').config();
 const { authorize } = require('./middlewares/authorize'); 
 
 const router = express.Router();
 
 // coneccion a la base de datos
 const db = mysql.createConnection({
-  host: 'localhost',
-  user: 'root', 
-  password: 'stefi1211',
-  database: 'ecommerce'
+  host: process.env.DB_HOST,  
+  user: process.env.DB_USER,  
+  password: process.env.DB_PASSWORD,  
+  database: process.env.DB_NAME  
 });
 
-const SECRET_KEY = 'clave_token'; 
+const SECRET_KEY = process.env.SECRET_KEY;
 
 // registrar usuario
 router.post('/register', (req, res) => {
@@ -121,7 +122,7 @@ router.post('/cart', authorize, (req, res) => {
     });
 });
 
-router.get('/:filename', (req, res) => {
+router.get('/:filename', authorize, (req, res) => {
   const { filename } = req.params;
   const filePath = path.join(__dirname, '../data', filename, `${filename}.json`);
 

@@ -1,16 +1,18 @@
 const fs = require('fs');
 const path = require('path');
 const mysql = require('mysql2');
+require('dotenv').config();
+
 
 const db = mysql.createConnection({
-  host: 'localhost',
-  user: 'root',
-  password: 'stefi1211',
-  database: 'ecommerce'
+  host: process.env.DB_HOST,  
+  user: process.env.DB_USER,  
+  password: process.env.DB_PASSWORD,  
+  database: process.env.DB_NAME  
 });
 
 
-const directoryPath = path.join(__dirname, 'products');
+const directoryPath = path.join(__dirname, '../data/products');
 
 // insertar productos a la base de datos
 const insertProduct = (product) => {
